@@ -1,4 +1,4 @@
-# plastic-trucks-8734##
+# plastic-trucks-8734
 
 Team Manager : Srikanth Chirimana
 
