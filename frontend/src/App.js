@@ -1,6 +1,7 @@
-import logo from './logo.svg';
+
+import AllRoutes from "./All_Routes/AllRoutes";
 import './App.css';
-import AllRoutes from "./All_Routes/AllRoutes"
+
 
 function App() {
   return (
