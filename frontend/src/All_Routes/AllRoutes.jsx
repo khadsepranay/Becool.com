@@ -1,5 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
+import Cart from "../Components/Pages/Cart/Cart";
 import ProductList from "../Components/Pages/Mens/ProductList";
 
 function AllRoutes() {
@@ -14,8 +15,8 @@ function AllRoutes() {
     
     }></Route>
       <Route path="/womens" ></Route>
-      <Route path="mobile"></Route>
-      <Route></Route>
+      <Route path="/mobiles"></Route>
+      <Route path="/carts" element={<Cart/>}></Route>
     </Routes>
   );
 }
