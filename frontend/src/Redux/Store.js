@@ -5,4 +5,4 @@ let thunk = require("redux-thunk");
 
 // let store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
-export default store;
+// export default store;
