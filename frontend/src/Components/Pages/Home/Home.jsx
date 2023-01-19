@@ -62,12 +62,7 @@ const Home = () => {
         </SimpleGrid>
           <Text  fontSize={"35"} color={"black"}>DESIGN OF THE WEEK</Text>
         <Flex>
-          <Box> 
-          <NavLink to={"/mens"}
-               
-               >
-                
-               </NavLink>         
+          <Box>         
             <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
           </Box>
           <Box>           
