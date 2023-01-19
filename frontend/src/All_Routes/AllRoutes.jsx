@@ -1,11 +1,13 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
+import Home from "../Components/Pages/Home/Home";
 import ProductList from "../Components/Pages/Mens/ProductList";
+
 
 function AllRoutes() {
   return (
     <Routes>
-      <Route path="/"></Route>
+      <Route path="/" element={<ChakraProvider><Home/></ChakraProvider>}></Route>
       <Route path="/mens"  element={
 
         <ChakraProvider>

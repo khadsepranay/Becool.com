@@ -1,0 +1,86 @@
+
+
+import React from 'react'
+import { Image,Box,SimpleGrid,Text,Img,Flex } from '@chakra-ui/react'
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { NavLink } from 'react-router-dom';
+// import Homes from './popular';
+// import Gang from './Gang';
+// import Banner from './Carousel';
+// import Homes from './popular';
+
+const Home = () => {
+    const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let res = await axios.get("http://localhost:8080/images");
+      console.log(res);
+      setData(res.data);
+    };
+    getData();
+  }, []);
+
+ 
+  return (
+    <>
+{/* <Banner/> */}
+    
+    <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
+
+  
+      <Box className="moment" p="20px" pb="auto">
+        
+        <SimpleGrid columns={[1, 3, 4, 7]} gap={3}>
+          {data.map((items, index) => {
+            return (
+              <Box
+                h="full"
+                borderRadius="20px"
+                alignItems="center"
+                key={index}
+                className="imgs"
+            
+              >
+                <NavLink
+               
+                >
+                  <Img
+                    // borderRadius="20px 20px 0px 0px"
+                    src={items.url}
+                    alt=""
+                  />
+                </NavLink>
+                <Text align="center" color="black" p="0px 5px">
+                  {items.title}
+                </Text>
+                
+              </Box>
+            );
+          })}
+        </SimpleGrid>
+          <Text  fontSize={"35"} color={"black"}>DESIGN OF THE WEEK</Text>
+        <Flex>
+          <Box> 
+          <NavLink to={"/mens"}
+               
+               >
+                
+               </NavLink>         
+            <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
+          </Box>
+          <Box>           
+             <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Women--1673937544.jpg' alt='Dan Abramov' />
+            </Box>
+        </Flex>
+        
+      </Box>
+    
+      
+    </>
+  )
+}
+
+
+export default Home
