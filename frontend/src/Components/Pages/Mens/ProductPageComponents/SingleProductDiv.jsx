@@ -1,4 +1,5 @@
 import { Box, Heading, Img, Text, VStack } from "@chakra-ui/react"
+import "./SingleProductDivCSS.model.css"
 
 
 const SingleProductDiv=(ProductData)=>{
@@ -17,9 +18,9 @@ const {
 
     
     return(
-        <VStack w={"100%"}>
-             
-        <Box w={"100%"}>
+        <VStack  className="zoom" w={"100%"}>
+            
+        <Box  w={"100%"}>
         <Box  h={0}  pos={"relative"} >
             <Box px="2" color={"white"} w={"fit-content"} background={"green.300"}>   
           <Text fontSize={"xs"}> 
@@ -30,6 +31,7 @@ const {
             </Box>
           </Box>
           <Img 
+         className="flash"
           w={"auto"}
           // src="https://images.bewakoof.com/t640/men-s-black-relaxed-fit-short-kurta-302583-1663931104-1.jpg"
           src={Image_Main}
