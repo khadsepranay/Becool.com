@@ -5,70 +5,55 @@ const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const userRegister = express.Router();
 
-userRegister.post("/register", (req, res) => {
-  const { username, email, password } = req.body;
-  bcrypt.hash(password, 5, async (err, hash) => {
-    if (err) {
-      console.log("err is ===> 🙋‍♂️", err);
-      res.send(err);
-    } else {
-      try {
-        const newUser = new UserModel({
-          username: username,
-          email: email,
-          password: hash,
-        });
-        await newUser.save();
-        res.send("User Register Successful");
-      } catch (error) {
-        console.log("error is ===> 🙋‍♂️ oooo ", error);
-        res.send({
-          status: "Eamil Already Register",
-          error: error,
-        });
-      }
-    }
-  });
-});
+userRegister.post('/register',async(req,res)=>{
+  let {email,password,username} = req.body
+  let User = await UserModel.findOne({email})
+  if(User){
+    res.send(`User already register with email:${email}`)
+  }
+ let hashPassword = await bcrypt.hash(password,5)
+ try{
+ if(hashPassword){
+  let user = await UserModel.create({email,password:hashPassword,username})
+  if(user){
+    res.send('User has been created successfully')
+  }else{
+    res.send('User is not created')
+  }
+ }else{
+  res.send('Please change the password')
+ }
+}catch(err){
+  res.send(err)
+}
+})
 
-userRegister.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const userDetails = await UserModel.find({ email: email });
 
-    if (userDetails) {
-      bcrypt.compare(password, userDetails[0].password, function (err, result) {
-        if (err) {
-          console.log("err is ===> 🙋‍♂️", err);
-          res.send(err);
-        } else {
-          if (result) {
-            jwt.sign(
-              { userid: userDetails[0]._id, email: email },
-              process.env.PRIVATEKEY,
-              { algorithm: "HS256" },
-              function (err, token) {
-                if (err) {
-                  console.log("err is ===> 🙋‍♂️", err);
-                  res.send(err);
-                } else {
-                  res.send({
-                    Staus: "login Successful",
-                    Token: token,
-                  });
-                }
-              }
-            );
-          } else {
-            console.log("Wronge password 🙋‍♂️");
-            res.send("Wronge password");
-          }
+userRegister.post('/login',async(req,res)=>{
+  let {email,password} = req.body
+  let User = await UserModel.findOne({email})
+  try{
+    if(User){
+      bcrypt.compare(password,User.password,(err,result)=>{
+        if(err){
+          res.send(err)
         }
-      });
-    } else {
-      res.send("User Are Not Register first please Signin First");
+        if(result){
+          let token = jwt.sign({userid:User._id},'AccessToken')
+          res.send({
+            msg:'Login Successfully',
+            token
+          })
+        }else{
+          res.send('Password is wrong')
+        }
+      })
+    }else{
+      res.status(401).send('Authentication failed')
     }
-  } catch (error) {}
-});
+  }catch(err){
+    res.send(err)
+  }
+})
 
 module.exports = { userRegister };

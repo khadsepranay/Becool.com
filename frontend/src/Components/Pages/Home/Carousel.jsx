@@ -1,12 +1,11 @@
 import React from "react";
-import { Box, 
-  IconButton, 
-  useBreakpointValue,
-  Button,
-  Icon } from "@chakra-ui/react";
+import { Box, IconButton, useBreakpointValue,Button,Icon } from "@chakra-ui/react";
+// Here we have used react-icons package for the icons
 import {  BiRightArrowAlt } from "react-icons/bi";
 import {  AiFillCaretLeft,AiFillCaretRight } from "react-icons/ai";
 import { AiFillStar } from 'react-icons/ai'
+
+// And react-slick as our Carousel Lib
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Slider from "react-slick";
@@ -34,31 +33,31 @@ const settings = {
 };
 
 export default function Carousel() {
- 
+  // As we have used custom buttons, we need a reference variable to
+  // change the state
   const [slider, setSlider] = React.useState(1);
-//   const navigate=useNavigate();
-//   const handleClick=(item)=>{
-//     setItem("singleproduct",item)
-//   navigate("/jewelery/singleproduct")
-// }
+  const navigate=useNavigate();
+  const handleClick=(item)=>{
+    setItem("singleproduct",item)
+  navigate("/jewelery/singleproduct")
+}
 
+  // These are the breakpoints which changes the position of the
+  // buttons as the screen size changes
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "10px" });
 
   // These are the images used in the slide
   const [data, setData] = useState([]);
-  // const navigate=useNavigate();
-
-  //   const handleClick=(item)=>{
-  //       setItem("singleproduct",item)
-  //     navigate("/Mens")
-  //  }
+  
   useEffect(() => {
     axios
-      .get("http://localhost:8080/caro")
+      .get("http://localhost:8080/homepage")
       .then((response) => {
-        console.log("res", response.data);
-        setData(response.data);
+        // console.log("res", response.data);
+        console.log(response)
+        console.log(data)
+        setData(response.data.slice(0,12));
       });
   }, []);
 
@@ -117,9 +116,10 @@ export default function Carousel() {
            maxW="sm">
             <CardBody>
               <Image
+              columns={[1, 1, 1,3]}
                 width="150%"
                 height="500px"
-                src={el.image1}
+                src={el.url}
                 alt="carousel img"
                 borderRadius="lg"
               />

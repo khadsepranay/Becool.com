@@ -11,6 +11,7 @@ const cartSchema = mongoose.Schema({
     ref: "becool_men_product",
     required: true,
   },
+  Quantity:Number
 
 });
 

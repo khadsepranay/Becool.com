@@ -5,8 +5,7 @@ const userAuthMiddleware = async (req, res, next) => {
   const token = req.headers.auth;
 
   try {
-    const { userid, email } = await jwt.verify(token, process.env.PRIVATEKEY);
-    console.log(userid);
+    const { userid } = await jwt.verify(token, "AccessToken");
     req.body.userid = userid;
      
     next();

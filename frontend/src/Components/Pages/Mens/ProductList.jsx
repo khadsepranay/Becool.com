@@ -1,7 +1,10 @@
 import { Box, Heading, Img, SimpleGrid, Text, VStack } from "@chakra-ui/react"
 import React from "react"
-import CategorySelector from "./ProductPageComponents/FiltersComponent"
-import SingleProductDiv from "./ProductPageComponents/SingleProductDiv"
+// import SingleProductDiv from "../SingleProductDiv"
+// import CategorySelector from "./FiltersComponent"
+import SingleProductDiv from "../Mens/ProductPageComponents/SingleProductDiv"
+import CategorySelector from "../Mens/ProductPageComponents/FiltersComponent"
+import { Link } from "react-router-dom"
 
 
 const ProductList = () => {
@@ -9,7 +12,7 @@ const ProductList = () => {
 
 
   return (
-    <Box  textAlign={"left"} margin={"auto"} w={"85%"}>
+    <Box textAlign={"left"} margin={"auto"} w={"85%"}>
         <Box my="4">
           <Heading >
             Men Clothing
@@ -88,7 +91,7 @@ const ProductList = () => {
             </VStack>
              */}
              {
-              Kurtas.map((el)=> <SingleProductDiv {...el}/>)
+              Kurtas.map((el)=> <SingleProductDiv {...el}/> )
              }
             
         

@@ -1,31 +1,34 @@
 
-
 import React from 'react'
 import { Image,Box,SimpleGrid,Text,Img,Flex } from '@chakra-ui/react'
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { NavLink } from 'react-router-dom';
-// import Homes from './popular';
-// import Gang from './Gang';
+import Homes from './Homes';
+import Gang from './Gang';
 // import Banner from './Carousel';
-// import Homes from './popular';
+import Top from './Top';
+import Gangs from './Gangs';
+import Bags from './Bags';
+
 
 const Home = () => {
     const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get("http://localhost:8080/images");
+      let res = await axios.get("http://localhost:8080/homepage");
+      setData(res.data.slice(12,19));
       console.log(res);
-      setData(res.data);
     };
     getData();
   }, []);
-
+  
  
   return (
     <>
-{/* <Banner/> */}
+    <Box bg={"white"}>
+{/* <Banner  /> */}
     
     <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
 
@@ -47,7 +50,7 @@ const Home = () => {
                
                 >
                   <Img
-                    // borderRadius="20px 20px 0px 0px"
+                   
                     src={items.url}
                     alt=""
                   />
@@ -60,9 +63,9 @@ const Home = () => {
             );
           })}
         </SimpleGrid>
-          <Text  fontSize={"35"} color={"black"}>DESIGN OF THE WEEK</Text>
+          <Text  fontSize={"35"} color={"black"} mt={"10"}>DESIGN OF THE WEEK</Text>
         <Flex>
-          <Box>         
+          <Box>          
             <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
           </Box>
           <Box>           
@@ -71,6 +74,18 @@ const Home = () => {
         </Flex>
         
       </Box>
+
+
+
+       <Homes/>
+   
+ <Gangs/>
+ <Bags/>
+{/* <Banner /> */}
+<Top/>
+<Gang /> 
+
+</Box>
     
       
     </>

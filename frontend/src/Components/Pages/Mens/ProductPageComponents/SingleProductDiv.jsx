@@ -1,4 +1,6 @@
 import { Box, Heading, Img, Text, VStack } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
+import "./SingleProductDivCSS.model.css"
 
 
 const SingleProductDiv=(ProductData)=>{
@@ -17,11 +19,11 @@ const {
 
     
     return(
-        <VStack w={"100%"}>
-             
-        <Box w={"100%"}>
-        <Box  h={0}  pos={"relative"} >
-            <Box px="2" color={"white"} w={"fit-content"} background={"green.300"}>   
+        <VStack  className="zoom" w={"100%"}>
+      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`p/${Name}`}>
+       <Box  w={"100%"}>
+        <Box top={1} h={"0"}  pos={"relative"} >
+            <Box px="2"  color={"white"} w={"fit-content"} background={"green.300"}>   
           <Text fontSize={"xs"}> 
 
             BUY 3 FOR {Price}
@@ -30,13 +32,14 @@ const {
             </Box>
           </Box>
           <Img 
+         className="flash"
           w={"auto"}
           // src="https://images.bewakoof.com/t640/men-s-black-relaxed-fit-short-kurta-302583-1663931104-1.jpg"
           src={Image_Main}
           />
 
-          <Box  h={0}  pos={"relative"} bottom={"12%"}>
-            <Box px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
+          <Box  h={0}  pos={"relative"} bottom={"3rem"}>
+            <Box  px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
             {`${Ratings}`}
 
             </Box>
@@ -66,6 +69,8 @@ const {
         </Box>
       
         </Box>
+      </Link>
+       
       </VStack>
       
     )
