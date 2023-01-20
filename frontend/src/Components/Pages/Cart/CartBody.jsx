@@ -136,7 +136,7 @@ let CartBody = () => {
         </Box>
       </Box>
       <Box sx={{marginTop:'135px'}}>
-        <Button sx={{width:'100%',backgroundColor:'#FDD835',color:'black',borderRadius:'5px',padding:'10px'}}>Save extra ₹40 with TriBe</Button>
+        <Button sx={{width:'100%',backgroundColor:'#FDD835',color:'black',borderRadius:'5px',padding:'10px',":hover":{backgroundColor:'#ff8000'}}}>Save extra ₹40 with TriBe</Button>
         <Box sx={{border:'1px solid #DEE2E4',borderRadius:'5px',marginTop:'20px',padding:'5px',color:'gray'}}>Whistles! Get extra 10% Cashback upto 100 on prepaid orders above Rs.699. Coupon code - MAD10.</Box>
         <Box sx={{border:'1px solid #DEE2E4',boxSizing:'border-box',padding:'5px',marginTop:'20px'}}><Button sx={{backgroundColor:'#E6F2F6',width:'100%',color:'#0F94BD'}}>Click here to redeem coupon</Button></Box>
         <Box sx={{border:'1px solid #DEE2E4',margin:'15px 0px'}}>
@@ -162,7 +162,7 @@ let CartBody = () => {
             <Box>Total</Box>
             <Box>₹ 499</Box>
           </Box>
-          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px'}}>CONTINUE</Button>
+          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px',":hover":{backgroundColor:'#008888'}}}>CONTINUE</Button>
         </Box>
       </Box>
     </Box>

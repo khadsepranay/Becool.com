@@ -18,12 +18,12 @@ app.use("/product", product);
 
 app.use("/cart",  cart);
 
-app.listen(process.env.PORT, async () => {
+app.listen(8000, async () => {
   try {
     await connect;
     console.log(`connect to Data Base 🚩🚩`);
   } catch (error) {
     console.log(` errror is ====> ${error} 🙋‍♂️`);
   }
-  console.log(`server is rumming on ${process.env.PORT} 🚩🚩`);
+  console.log(`server is running on 8000 🚩🚩`);
 });

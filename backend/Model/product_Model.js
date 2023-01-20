@@ -18,6 +18,7 @@ const productSchema = mongoose.Schema({
   Price1: String,
   Price2: String,
   Price3: String,
+  Quantity:Number
 });
 
 const ProductModel = mongoose.model("becool_men_product", productSchema);

@@ -10,13 +10,11 @@ const cart = express.Router();
 
 cart.get("/", userAuthMiddleware, async (req, res) => {
   const userid = req.body.userid;
-  console.log("userid is ===> ", userid);
   try {
     let data = await CartModel.find({ userid }).populate([
       "userid",
       "productid",
     ]);
-    console.log(data);
     res.send(data);
   } catch (error) {
     res.send(error);
@@ -26,26 +24,83 @@ cart.get("/", userAuthMiddleware, async (req, res) => {
 cart.post("/add/:id", userAuthMiddleware, async (req, res) => {
   const userid = req.body.userid;
   const productid = req.params.id;
-  // console.log("===>",userid, productid);
-  try {
-    const cartproduct = new CartModel({ userid, productid });
-    await cartproduct.save();
-    res.send("Product Add To Cart ");
-  } catch (error) {
-    console.log(error);
-    res.send("error");
+  let CartItem = await CartModel.findOne({userid,productid})
+  let Product = await ProductModel.findById(productid)
+  if(CartItem){
+    res.send('already added to cart')
+  }else{
+    try {
+      if(Product.Quantity>0){
+        let cartProduct = await CartModel.create({userid,productid,Quantity:1})
+        newQuantity = Product.Quantity - 1
+        await ProductModel.findByIdAndUpdate(productid,{Quantity:newQuantity})
+        res.send("Product Add To Cart ");
+      }else{
+        res.send(`Product with id:${productid} is out of stock`)
+      }
+    } catch (error) {
+      res.send(error);
+    }
   }
 });
 
-cart.delete("/delete/:id", userAuthMiddleware, async (req, res) => {
-  const id = req.params.id;
+cart.post('/cartquantityadd/:id',userAuthMiddleware, async(req,res)=>{
+  try{
+  let productid = req.params.id
+  let userid = req.body.userid
+  let Product = await ProductModel.findById(productid)
+  if(Product.Quantity>0){
+    let productQuantity = Number(Product.Quantity) - 1
+    let product = await ProductModel.findByIdAndUpdate(productid,{Quantity:productQuantity},{new:true})
+    console.log(product)
+    let CartItem = await CartModel.findOne({userid,productid})
+    let cartQuantity = CartItem.Quantity + 1
+    await CartModel.findOneAndUpdate({userid,productid},{Quantity:cartQuantity},{new:true})
+    res.send('Item increased')
+  }else{
+    res.send('Out of stock')
+  }
+}catch(err){
+  res.send(err)
+}
+}
+)
 
-  try {
-     await CartModel.findByIdAndDelete(id);
-    res.send("Product Delete To Cart ");
-  } catch (error) {
-    console.log(error);
-    res.send("error");
+cart.post('/cartquantityreduce/:id',userAuthMiddleware, async(req,res)=>{
+  let productid = req.params.id
+  let userid = req.body.userid
+  let CartItem = await CartModel.findOne({productid,userid})
+  if(CartItem.Quantity<1){
+    res.send('Cannot decrease')
+  }else{
+  try{
+  let Product = await ProductModel.findById(productid)
+    let productQuantity = Number(Product.Quantity) + 1
+    let product = await ProductModel.findByIdAndUpdate(productid,{Quantity:productQuantity},{new:true})
+    let cartQuantity = CartItem.Quantity - 1
+    await CartModel.findOneAndUpdate({userid,productid},{Quantity:cartQuantity},{new:true})
+    res.send('Item Decreased')
+  }catch(err){
+    res.send(err)
+  }
+  }
+}
+  )
+
+cart.delete("/delete/:id", userAuthMiddleware, async (req, res) => {
+  try{
+  const id = req.params.id;
+    let CartItem = await CartModel.findById(id)
+    let ProductID = CartItem.productid._id
+    let Product = await ProductModel.findById(ProductID)
+    let cartQuantity = CartItem.Quantity
+    let productQuantity = Product.Quantity
+    let totalQuantity = cartQuantity + productQuantity
+    await ProductModel.findByIdAndUpdate(ProductID,{Quantity:totalQuantity},{new:true})
+    await CartModel.findByIdAndDelete(id);
+    res.send("Product Delete To Cart");
+  }catch(err){
+    res.send(err)
   }
 });
 module.exports = { cart };
