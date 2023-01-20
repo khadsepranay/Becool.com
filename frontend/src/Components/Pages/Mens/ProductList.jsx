@@ -4,6 +4,7 @@ import React from "react"
 // import CategorySelector from "./FiltersComponent"
 import SingleProductDiv from "../Mens/ProductPageComponents/SingleProductDiv"
 import CategorySelector from "../Mens/ProductPageComponents/FiltersComponent"
+import { Link } from "react-router-dom"
 
 
 const ProductList = () => {
@@ -90,7 +91,7 @@ const ProductList = () => {
             </VStack>
              */}
              {
-              Kurtas.map((el)=> <SingleProductDiv {...el}/>)
+              Kurtas.map((el)=> <SingleProductDiv {...el}/> )
              }
             
         
