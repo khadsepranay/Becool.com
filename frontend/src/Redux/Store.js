@@ -1,8 +1,8 @@
-let { legacy_createStore, applyMiddleware, combineReducers } = require("redux");
+import { legacy_createStore, applyMiddleware, combineReducers } from "redux";
 let thunk = require("redux-thunk");
+import { reducer as ProductReducer } from "./Vpawar/Reducer";
+let rootReducer = combineReducers({ProductReducer});
 
-// let rootReducer = combineReducers({});
+let store = legacy_createStore(rootReducer, applyMiddleware(thunk.default));
 
-// let store = legacy_createStore(rootReducer, applyMiddleware(thunk));
-
-// export default store;
+export default store;

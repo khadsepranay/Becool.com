@@ -5,10 +5,23 @@ import React from "react"
 import SingleProductDiv from "../Mens/ProductPageComponents/SingleProductDiv"
 import CategorySelector from "../Mens/ProductPageComponents/FiltersComponent"
 import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import {useDispatch ,useSelector}from "react-redux"
+import { getProductData } from "../../../Redux/Vpawar/Actions"
 
 
 const ProductList = () => {
 
+  const dispatch=useDispatch()
+
+  const ProductData=useSelector((store)=>store.ProductReducer.ProductData)
+  // console.log("Product Data ",ProductData)
+
+
+
+  useEffect(()=>{
+      dispatch(getProductData())
+  },[])
 
 
   return (
@@ -48,7 +61,7 @@ const ProductList = () => {
           <Box textAlign={"right"}>
             <Text>Sort By</Text>
           </Box>
-          <SimpleGrid  mx="5" w={"100%"} spacing={4} columns={[1, 2, 3, 3]} >
+          <SimpleGrid  mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
 
             {/* <VStack>
              
@@ -91,7 +104,7 @@ const ProductList = () => {
             </VStack>
              */}
              {
-              Kurtas.map((el)=> <SingleProductDiv {...el}/> )
+              ProductData.map((el)=> <SingleProductDiv key={el._id} {...el}/> )
              }
             
         
