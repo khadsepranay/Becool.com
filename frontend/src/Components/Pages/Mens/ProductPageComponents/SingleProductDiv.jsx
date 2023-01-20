@@ -1,4 +1,5 @@
 import { Box, Heading, Img, Text, VStack } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 import "./SingleProductDivCSS.model.css"
 
 
@@ -19,10 +20,10 @@ const {
     
     return(
         <VStack  className="zoom" w={"100%"}>
-            
-        <Box  w={"100%"}>
-        <Box  h={0}  pos={"relative"} >
-            <Box px="2" color={"white"} w={"fit-content"} background={"green.300"}>   
+      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`p/${Name}`}>
+       <Box  w={"100%"}>
+        <Box top={1} h={"0"}  pos={"relative"} >
+            <Box px="2"  color={"white"} w={"fit-content"} background={"green.300"}>   
           <Text fontSize={"xs"}> 
 
             BUY 3 FOR {Price}
@@ -37,8 +38,8 @@ const {
           src={Image_Main}
           />
 
-          <Box  h={0}  pos={"relative"} bottom={"12%"}>
-            <Box px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
+          <Box  h={0}  pos={"relative"} bottom={"3rem"}>
+            <Box  px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
             {`${Ratings}`}
 
             </Box>
@@ -68,6 +69,8 @@ const {
         </Box>
       
         </Box>
+      </Link>
+       
       </VStack>
       
     )
