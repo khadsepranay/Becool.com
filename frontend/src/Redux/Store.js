@@ -1,8 +1,11 @@
-let { legacy_createStore, applyMiddleware, combineReducers } = require("redux");
-let thunk = require("redux-thunk");
+import { legacy_createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from "redux-thunk";
+import { CartReducer } from "./Pranay/Reducer";
 
-// let rootReducer = combineReducers({});
+let rootReducer = combineReducers({
+    Cart:CartReducer
+});
 
-// let store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+let store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
-// export default store;
+export default store;
