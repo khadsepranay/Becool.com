@@ -12,7 +12,7 @@ let rootReducer = combineReducers({
     ProductReducer
 });
 
-let store = legacy_createStore(rootReducer, applyMiddleware(thunk.default));
+let store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
 
 export default store;
