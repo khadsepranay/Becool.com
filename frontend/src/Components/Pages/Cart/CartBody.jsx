@@ -1,5 +1,8 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Box } from "@mui/system";
+import { useEffect } from "react";
+import {useDispatch,useSelector} from 'react-redux'
+import {getData,increaseCartData} from "../../../Redux/Pranay/Actions";
 
 let CartBody = () => {
     let data = [
@@ -25,6 +28,15 @@ let CartBody = () => {
             price2:'₹1099'
         }
     ]
+    let dispatch = useDispatch()
+
+    useEffect(()=>{
+      dispatch(getData())
+    },[])
+
+    let state = useSelector((state)=>state)
+    console.log(state)
+
   return (
     <Box
       sx={{
@@ -38,6 +50,7 @@ let CartBody = () => {
       }}
     >
       <Box sx={{ textAlign: "left" }}>
+        
         <Box
           sx={{
             textAlign: "left",
@@ -50,7 +63,10 @@ let CartBody = () => {
           <Box>1 item</Box>
         </Box>
         <Box sx={{backgroundColor:'#FCFFEE',padding:'15px'}}>Yay! You get FREE delivery on this order</Box>
-        <Box sx={{
+        <Box>
+          {
+            state.Cart.CartData.map((el)=>{
+            return <Box sx={{
             border: "1px solid #DEE2E4",
             height: "250px",
             borderRadius: "5px",
@@ -62,7 +78,7 @@ let CartBody = () => {
         <Box sx={{display:'flex',justifyContent:'space-between'}}> 
         <Box>
           <Box sx={{color:'gray',fontSize:'17px'}}>
-            Men's Purple Riot XXX Tentacion Graphic Printed Oversized T-Shirt
+            {el.productid.Name}
           </Box>
           <Box
             sx={{
@@ -73,37 +89,12 @@ let CartBody = () => {
               height:'35px'
             }}
           >
-            <Box component="h2">₹499</Box>
-            <Box>₹1499</Box>
+            <Box component="h2">₹{el.productid.Price}</Box>
+            <Box>₹{el.productid.Price1}</Box>
           </Box>
-          <Box sx={{margin:'2px 0px 6px 0px',color:'green'}}>You Saved ₹1000!</Box>
-          <Box component='form'>
-          <FormControl sx={{width:'78px'}}>
-            <InputLabel sx={{fontSize:'13px'}}>Size:S</InputLabel>
-            <Select sx={{height:'28px',marginTop:'10px'}}>
-              <MenuItem>S</MenuItem>
-              <MenuItem>M</MenuItem>
-              <MenuItem>L</MenuItem>
-              <MenuItem>XL</MenuItem>
-              <MenuItem>2XL</MenuItem>
-              <MenuItem>3XL</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl sx={{width:'78px',marginLeft:'20px'}}>
-            <InputLabel sx={{fontSize:'13px'}}>Qty:1</InputLabel>
-            <Select sx={{height:'28px',marginTop:'10px'}}>
-              <MenuItem>1</MenuItem>
-              <MenuItem>2</MenuItem>
-              <MenuItem>3</MenuItem>
-              <MenuItem>4</MenuItem>
-              <MenuItem>5</MenuItem>
-              <MenuItem>6</MenuItem>
-              <MenuItem>7</MenuItem>
-              <MenuItem>8</MenuItem>
-              <MenuItem>9</MenuItem>
-              <MenuItem>10</MenuItem>
-            </Select>
-          </FormControl>
+          <Box sx={{margin:'2px 0px 6px 0px',color:'green'}}>You Saved ₹{el.productid.Price1-el.productid.Price}</Box>
+          <Box>
+            Quantity : <Button>-</Button>{el.Quantity}<Button onClick={()=>dispatch(increaseCartData(el.productid._id))}>+</Button>
           </Box>
           <Box sx={{margin:'5px 0px 25px',color:'red'}}>Hurry! only 1 left</Box>
           </Box>
@@ -116,12 +107,15 @@ let CartBody = () => {
             <Button  sx={{width:'100%',backgroundColor:'#F3F0F0',color:'grey'}}>Move to wishlist</Button>
         </Box>
         </Box>
+      })
+    }
+        </Box>
         <Box component='h4'>You may also like</Box>
         <Box sx={{display:'flex',justifyContent:'space-between',margin:'auto',gap:'30px'}}>
             {
                 data.map((el)=>{
                     return(
-                        <Box key={Date.now()}>
+                        <Box>
                             <Box component='img' src={el.url} sx={{width:'100%'}}/>
                             <Box>{el.title}</Box>
                             <Box sx={{display:'flex',gap:'10px',alignItems:'center'}}>
@@ -136,7 +130,7 @@ let CartBody = () => {
         </Box>
       </Box>
       <Box sx={{marginTop:'135px'}}>
-        <Button sx={{width:'100%',backgroundColor:'#FDD835',color:'black',borderRadius:'5px',padding:'10px'}}>Save extra ₹40 with TriBe</Button>
+        <Button sx={{width:'100%',backgroundColor:'#FDD835',color:'black',borderRadius:'5px',padding:'10px',":hover":{backgroundColor:'#ff8000'}}}>Save extra ₹40 with TriBe</Button>
         <Box sx={{border:'1px solid #DEE2E4',borderRadius:'5px',marginTop:'20px',padding:'5px',color:'gray'}}>Whistles! Get extra 10% Cashback upto 100 on prepaid orders above Rs.699. Coupon code - MAD10.</Box>
         <Box sx={{border:'1px solid #DEE2E4',boxSizing:'border-box',padding:'5px',marginTop:'20px'}}><Button sx={{backgroundColor:'#E6F2F6',width:'100%',color:'#0F94BD'}}>Click here to redeem coupon</Button></Box>
         <Box sx={{border:'1px solid #DEE2E4',margin:'15px 0px'}}>
@@ -162,7 +156,7 @@ let CartBody = () => {
             <Box>Total</Box>
             <Box>₹ 499</Box>
           </Box>
-          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px'}}>CONTINUE</Button>
+          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px',":hover":{backgroundColor:'#008888'}}}>CONTINUE</Button>
         </Box>
       </Box>
     </Box>

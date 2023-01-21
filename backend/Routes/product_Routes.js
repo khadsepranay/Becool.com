@@ -6,7 +6,7 @@ var jwt = require("jsonwebtoken");
 
 const product = express.Router();
 
-product.get("/men", async (req, res) => {
+product.get("/mens", async (req, res) => {
   let sort = req.query.sort;
   let chek = {...req.query};
 
@@ -17,9 +17,8 @@ product.get("/men", async (req, res) => {
     sortnum = 1;
   }
   
-  // !  delet e the sort key in query
+  // !  delete the sort key in query
     delete chek.sort;
-console.log(chek);
   try {
     let data = await ProductModel.find(chek).sort({ Price: sortnum });
     res.send(data);
@@ -28,12 +27,11 @@ console.log(chek);
   }
 });
 
-product.post("/men/add", async (req, res) => {
-  const payload = req.body;
+product.post("/mens/add", async (req, res) => {
 
   try {
-    let newProduct = new ProductModel(payload);
-    await newProduct.save();
+    const payload = req.body;
+    let newProduct = await ProductModel.create(payload)
     res.send("New Product Added");
   } catch (error) {
     res.send(error);
