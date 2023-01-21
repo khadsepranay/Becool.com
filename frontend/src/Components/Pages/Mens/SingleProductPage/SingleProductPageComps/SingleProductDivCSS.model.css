@@ -1,0 +1,26 @@
+.zoom {
+  
+    transition: transform .2s; 
+  
+    
+  }
+  @keyframes flash {
+      25%, 75% { opacity: 0.7; } 
+     
+    }
+  .zoom div{
+    margin-top: .2rem;
+    margin-bottom: .2rem;
+  }
+    .flash:hover {
+
+  opacity: 1;
+  -webkit-animation: flash 0.3s;
+  animation: flash 0.3s;
+ }
+
+  .zoom:hover {
+    /* pointer-events: painted; */
+    
+    transform: scale(1.02); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
