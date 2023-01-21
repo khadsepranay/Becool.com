@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <>
     <Box bg={"white"}>
-{/* <Banner  /> */}
+<Banner  />
     
     <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
 
@@ -81,11 +81,13 @@ const Home = () => {
    
  <Gangs/>
  <Bags/>
-{/* <Banner /> */}
+<Banner />
 <Top/>
 <Gang /> 
 
 </Box>
+    
+
     
       
     </>
