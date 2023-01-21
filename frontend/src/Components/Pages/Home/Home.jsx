@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <>
     <Box bg={"white"}>
-      {/* <Navbar/> */}
+      <Navbar/>
 <Banner  />
     
     <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
