@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 // import Gangs from './Gangs';
 
 const Bags = () => {
+  
     const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
