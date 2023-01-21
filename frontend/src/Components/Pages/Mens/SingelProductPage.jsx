@@ -7,7 +7,7 @@ import "../Mens/SingleProductPage/SingleProductPageComps/SinglePage.model.css"
 import OffersDropDown from "./SingleProductPage/SingleProductPageComps/OfferDropDown"
 import SinglePageProductDiv from './SingleProductPage/SingleProductPageComps/SinglePageProductDiv'
 import {AiTwotoneStar} from 'react-icons/ai'
-
+import { useLocation } from 'react-router-dom'
 
 const SizeArray=["S","M","L","XL","2XL","3XL"]
 const SizeBoxes=(params)=>{
@@ -42,9 +42,11 @@ const SingleProductPage = () => {
     const [mainImg,setMainImg]=useState('Image')
     const params=useParams()
     // const proArray=[]
+    const location=useLocation()
+    console.log(location)
     // window.location.reload()
-
-
+    
+    
 
  useEffect(()=>{
     let Arr=[]
@@ -81,7 +83,7 @@ const handleMainImg=(e)=>{
         <Box textAlign={"left"}>
             <Box mx={"10"} my="5" p="5">
                 <Text color={"gray.600"}>
-                    Home / Men / {`${pData.Name}`}
+                    Home {location.pathname} / {`${pData.Name}`}
 
                 </Text>
 
@@ -209,10 +211,8 @@ const handleMainImg=(e)=>{
                                     {/* <HorizontalDivider/> */}
                                     <OffersDropDown/>
                                     {/* <HorizontalDivider/> */}
-                                    <OffersDropDown/>
-                                    <OffersDropDown/>
-                                    <OffersDropDown/>
-                                    <OffersDropDown/>
+                                   
+                                  
                                     {/* <HorizontalDivider/> */}
                                 </Box>
                             </Box>

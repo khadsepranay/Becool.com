@@ -5,7 +5,7 @@ const CategorySelector=()=>{
 
     return(
      
-     <Accordion  defaultIndex={[0]} allowMultiple>
+     <Accordion   allowMultiple>
       
       <Box> 
           <AccordionItem >
