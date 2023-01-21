@@ -77,6 +77,8 @@ const Home = () => {
 
 
 
+
+
        <Homes/>
    
  <Gangs/>
@@ -88,7 +90,7 @@ const Home = () => {
 </Box>
     
 
-    
+
       
     </>
   )
