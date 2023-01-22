@@ -35,7 +35,7 @@ const Homes = () => {
                 key={index}
                 className="imgs"
               >
-                <NavLink
+                <NavLink to="/product/mens"
                
                 >
                   <Img

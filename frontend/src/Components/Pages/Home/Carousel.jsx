@@ -63,11 +63,12 @@ export default function Carousel() {
 
   return (
     <Box
-      // position={"relative"}
+     
       height={"600px"}
       width={"100%"}
       // mt={"300px"}
-      z-Index={"99"}
+      // z-Index={"99"}
+      mb={"30px"}
      
       overflow={"hidden"}
     >
@@ -91,6 +92,7 @@ export default function Carousel() {
         position="absolute"
         left={side}
         top={top}
+        mt={"400px"}
         transform={"translate(0%, -50%)"}
         zIndex={2}
         onClick={() => slider?.slickPrev()}
@@ -105,6 +107,7 @@ export default function Carousel() {
         position="absolute"
         right={side}
         top={top}
+        mt={"400px"}
         transform={"translate(0% ,-50%)"}
         zIndex={2}
         onClick={() => slider?.slickNext()}
@@ -114,7 +117,7 @@ export default function Carousel() {
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {data.map((el, index) => (
-          <Card cursor="pointer" onClick={()=>handleClick(el)} 
+          <Card mt={"80px"}   cursor="pointer" onClick={()=>handleClick(el)} 
            maxW="sm">
             <CardBody>
               <Image

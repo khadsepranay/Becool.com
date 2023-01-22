@@ -7,6 +7,9 @@ import SingleProductPage from "../Components/Pages/Mens/SingelProductPage";
 function AllRoutes() {
   return (
     <Routes>
+
+
+      {/* "Anju" */}
       <Route
         path="/"
         element={
@@ -15,6 +18,10 @@ function AllRoutes() {
           </ChakraProvider>
         }
       ></Route>
+
+{/* vikas pawar */}
+
+
 
       <Route
         path="/product/mens"
@@ -32,10 +39,32 @@ function AllRoutes() {
           </ChakraProvider>
         }
       />
-      <Route path="/womens"></Route>
+      <Route path="/product/womens"></Route>
+      <Route
+        path="/singleproduct/womens/:id"
+        element={
+          <ChakraProvider>
+            <SingleProductPage />
+          </ChakraProvider>
+        }
+      />
+
+
+
+{/* vikas */}
+
       <Route path="/mobiles"></Route>
+      <Route path="/mobiles/covers"></Route>
+
+    
+
+
+{/* pranay */}
       <Route path="/carts" element={<Cart />}></Route>
     </Routes>
+
+
+
   );
 }
 

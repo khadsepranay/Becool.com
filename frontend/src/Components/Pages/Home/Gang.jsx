@@ -15,7 +15,6 @@ const Gang = () => {
       setData(res.data.slice(31,35));
     };
     getData();
-    
   }, []);
 
  

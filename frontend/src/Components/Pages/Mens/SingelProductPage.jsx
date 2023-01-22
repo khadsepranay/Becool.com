@@ -70,9 +70,9 @@ const SingleProductPage = () => {
 
  },[AllProduct.length,params.id])
 
- useEffect(()=>{
+//  useEffect(()=>{
 
- },[])
+//  },[])
 
 const handleMainImg=(e)=>{
     // console.log(e.target.src)
@@ -232,9 +232,9 @@ const handleMainImg=(e)=>{
                                 </SimpleGrid>
             </Box>
             
-            <Box w={"100%"} bg={"purple"} height={"500px"}>
+            {/* <Box w={"100%"} bg={"purple"} height={"500px"}>
 
-            </Box>
+            </Box> */}
 
 
 

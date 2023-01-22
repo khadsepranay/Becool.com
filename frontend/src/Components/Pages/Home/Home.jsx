@@ -4,7 +4,8 @@ import { Image,Box,SimpleGrid,Text,Img,Flex } from '@chakra-ui/react'
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
+
 import Homes from './Homes';
 import Gang from './Gang';
 import Banner from './Carousel';
@@ -13,11 +14,12 @@ import Gangs from './Gangs';
 import Bags from './Bags';
 
 
+
 const Home = () => {
     const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get("http://localhost:8000/product/mens");
+      let res = await axios.get("http://localhost:8080/homepage");
       setData(res.data.slice(12,19));
       console.log(res);
     };
@@ -28,7 +30,30 @@ const Home = () => {
   return (
     <>
     <Box bg={"white"}>
-<Banner  />
+   
+
+<Box>
+<Flex mb={"20px"}  gap={"10px"}>
+          <Box>          
+            <img  src='https://images.bewakoof.com/uploads/grid/app/revamped-banner-1x1-B3A899-new1-1674029532.jpg' alt='Dan Abramov' />
+          </Box>
+          <Box>           
+             <img  src="https://images.bewakoof.com/uploads/grid/app/1x1-flat-70-common-1674282158.jpg" alt='Dan Abramov' />
+            </Box>
+
+            <Box>           
+             <img  src="https://images.bewakoof.com/uploads/grid/app/b2g1-1x1-common-1674035537.jpg" alt='Dan Abramov' />
+            </Box>
+        </Flex>
+        </Box>
+
+
+
+
+
+
+
+
     
     <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
 
@@ -46,7 +71,7 @@ const Home = () => {
                 className="imgs"
             
               >
-                <NavLink
+                <NavLink to="/product/mens"
                
                 >
                   <Img
@@ -64,12 +89,16 @@ const Home = () => {
           })}
         </SimpleGrid>
           <Text  fontSize={"35"} color={"black"} mt={"10"}>DESIGN OF THE WEEK</Text>
-        <Flex>
-          <NavLink to='/product/mens'><Box>         
-            <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
-          </Box></NavLink>
-          <Box>           
-             <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Women--1673937544.jpg' alt='Dan Abramov' />
+        <Flex ml={"40px"}>
+          <Box>  
+            <Link to ="/product/mens">       
+            <img width={"100%"}   src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
+          </Link> 
+          </Box>
+          <Box>  
+            <Link to ="/product/womens">        
+             <img   width={"100%"} src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Women--1673937544.jpg' alt='Dan Abramov' />
+             </Link> 
             </Box>
         </Flex>
         

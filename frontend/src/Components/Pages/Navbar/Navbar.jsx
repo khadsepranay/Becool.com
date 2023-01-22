@@ -1,121 +1,176 @@
-import {
-  Box,
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  Stack,
-  Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useColorModeValue,
-  useBreakpointValue,
-  useDisclosure,
-  Input
-} from '@chakra-ui/react';
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
-import {AiOutlineShoppingCart}from "react-icons/ai"
-import {BsSearch} from "react-icons/bs"
-import { Link } from 'react-router-dom';
+
+import { 
+  VStack,StackBoxider ,
+  Box, 
+  Grid, GridItem,HStack ,
+  Input, InputGroup, InputLeftElement, Image, 
+
+   Center, Text, Flex, Wrap, position, }
+
+    from '@chakra-ui/react'
+
+import { SearchIcon, CalendarIcon } from "@chakra-ui/icons"
+
+import React from 'react'
+
+import { Link } from 'react-router-dom'
+// import  './Navbar.module.css'
+import { useNavigate } from 'react-router-dom'
 
 
-export default function Navbar() {
-  const { isOpen, onToggle } = useDisclosure();
+const Navbar = () => {
 
-  return (
-    <Box bgColor={"white"} position={"fixed"} width={"100%"}>
-      <Flex
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
-        minH={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}>
-        <Flex
-          flex={{ base: 1, md: 'auto' }}
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          {/* <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text> */}
-          <img  style={{width:"70px"}}
+
+  
+const activeStyle = {
+  color:"black",
+  backgroundColor:"#fdd835",
+  // position:"fixed"
+};
+
+const defaultStyle = {
+  color:"black",
+  backgroundColor:"#fdd835",
+  // position:"fixed",
+  // zIndex:"999"
+};
+
+
+
+
+return (
+ 
+  <Box  className="mainNav" position={"fixed"} zIndex={"999"} bgColor={"black"} width={"100%"}>
+   <Wrap justify='center' >
+
+    
+
+      <Grid className="NavbarCNav" templateColumns='repeat(3, 20% 30% 40%)' gap={2} >
           
-          
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPtlAr74_JaUSbsCU8FwTE6rlP-1BV_5b5dw&usqp=CAU" />
+          <GridItem>
+        
+          <Link to="/">
+              <Image width="80%"
+               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUJnEthfPZUDLBSxFTXRYP8IOMKJSyiW-cNg&usqp=CAU"
+              />
+          </Link>
+             
 
-            <Box>
-          <Flex display={{ base: 'none', md: 'flex' }} ml={50}gap={"40px"} mt={"50px"}  fontWeight={400}>
+          </GridItem>
+
+          <GridItem>
+
+           <HStack  spacing='24px' >
+
+              <Center  h='50px' >
+                <Link to="/product/mens" >
+                <Text 
+                fontWeight="extrabold" fontSize={"14px"} color={"white"}> MEN</Text> 
+                </Link>
+              </Center>
+
               
-            <Link to='/product/mens'><Text>Mens </Text></Link>
-            <Link to="/carts"><Text>Cart </Text></Link>
-          </Flex>
-            </Box>
-        </Flex>
-        {/* <Box>
+              <Center padding="0px 20px" 
 
-        <Input width={"100%"} backgroundColor={"white"} mr={"30px"}  color={"black"} placeholder='Search from here ' />
-        <BsSearch/>
-        </Box> */}
+            //  style={({ isActive }) => (isActive ? activeStyle : defaultStyle)}
+                  style={activeStyle}
+               h='50px' >
+                <Link   to="/product/womens" >
+                   <Text
+                   fontWeight="extrabold" fontSize={"14px"} color={"white"}> WOMEN</Text> 
+                   </Link>
+              </Center>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
-          spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-           Login
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Sign Up
-          </Button>
-        </Stack>
+              
+              <Center  h='50px' >
+                <Link to="/product/mobiles"> 
+                <Text 
+                fontWeight="extrabold" fontSize={"14px"}color={"white"} > MOBILE COVER</Text> </Link>
+              </Center>
+                    
+            </HStack >
 
-       <AiOutlineShoppingCart/>
-      </Flex>
+          </GridItem>
 
-      <Collapse in={isOpen} animateOpacity>
-        {/* <MobileNav /> */}
-      </Collapse>
-    </Box>
-  );
+          <GridItem  style={{marginLeft: "180px"}} >
+
+            <HStack  spacing='24px' >
+
+            <InputGroup>
+               <InputLeftElement
+                 pointerEvents='none'
+                 children={<SearchIcon color='gray.300' />}
+                 />
+               <Input w={300} placeholder='Search By Product' />
+             </InputGroup>
+
+             <Center h='50px' >
+                <Text fontWeight="extrabold" fontSize={"14px"} color={"white"} > |</Text> 
+              </Center>
+
+                
+              <Center h='50px' >
+                <Link  to="/login"  >
+                   <Text
+                    fontWeight="extrabold" fontSize={"14px"} color={"white"} > Login</Text> </Link>
+              </Center>
+
+              <Center h='50px' >
+                  
+                <Link to="/carts"   > <CalendarIcon fontWeight="extrabold" fontSize={"20px"} color={"white"} > </CalendarIcon> </Link>
+
+              </Center>
+
+              
+     
+
+           </HStack>
+
+          </GridItem>
+            
+      </Grid >
+
+    
+     
+      
+      </Wrap>
+      <hr />
+
+     
+
+      <HStack justify="center" spacing='24px' >
+
+              <Center  h='50px' >
+                <Link to="/product/mens" > 
+                <Text 
+                fontWeight="extrabold" fontSize={"20px"} color={"white"} > MEN</Text> 
+                </Link>
+              </Center>
+
+              
+              <Center padding="0px 20px" 
+
+            //  style={({ isActive }) => (isActive ? activeStyle : defaultStyle)}
+              
+               h='50px' >
+                <Link   to="/product/women" >
+                   <Text
+                   fontWeight="extrabold" fontSize={"20px"} color={"white"} > WOMEN</Text> 
+                   </Link>
+              </Center>
+
+              
+              <Center  h='50px' >
+                <Link to="/product/mobiles" > 
+                <Text
+                fontWeight="extrabold" fontSize={"20px"}  color={"white"}> MOBILE COVERS</Text> </Link>
+              </Center>
+                    
+            </HStack >
+
+  </Box>
+
+)
 }
 
-
-
+export default Navbar

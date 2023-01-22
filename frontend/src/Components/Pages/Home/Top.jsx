@@ -23,7 +23,7 @@ const Top = () => {
  
   return (
     <>
-    <Box>
+    <Box ml={"40px"}>
         <Image src='https://images.bewakoof.com/uploads/grid/app/desktop-survey-1673330211.jpg' />
     </Box>
       <Box className="moment" p="20px" pb="auto">
@@ -40,7 +40,7 @@ const Top = () => {
                 key={index}
                 className="imgs"
               >
-                <NavLink
+                <NavLink to="/product/mobiles"
                
                 >
                   <Img

@@ -36,7 +36,7 @@ const Bags = () => {
                 key={index}
                 className="imgs"
               >
-                <NavLink
+                <NavLink to="/product/womens"
                
                 >
                   <Img
