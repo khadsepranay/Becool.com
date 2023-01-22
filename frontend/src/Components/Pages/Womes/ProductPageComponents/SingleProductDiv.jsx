@@ -1,8 +1,8 @@
-import { Box, Heading, Icon, Img, Text, VStack } from "@chakra-ui/react"
-import { BsHeart } from "react-icons/bs"
+import { Box, Heading, Img, Text, VStack,Icon } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import "./SingleProductDivCSS.model.css"
-import {AiTwotoneStar} from 'react-icons/ai'
+import {BsHeart}from "react-icons/bs"
+import {AiTwotoneStar} from "react-icons/ai"
 const SingleProductDiv=(ProductData)=>{
 
 const {
@@ -10,7 +10,6 @@ const {
   Image_Main,
   Ratings,
   Name,
-  Brand,
   Price,
   Price1,
   Price2,
@@ -22,7 +21,7 @@ const {
     
     return(
         <VStack  className="zoom" w={"100%"}>
-      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`../singleproduct/mens/${_id}`}>
+      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`../singleproduct/womens/${_id}`}>
        <Box  w={"100%"}>
         <Box top={1} h={"0"}  pos={"relative"} >
             <Box px="2"  color={"white"} w={"fit-content"} background={"green.300"}>   
@@ -42,7 +41,7 @@ const {
 
           <Box  h={0}  pos={"relative"} bottom={"3rem"}>
             <Box  px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
-            {`${Ratings}`} <Icon as={AiTwotoneStar} color="yellow.500"/>
+            {`${Ratings}`}<Icon as={AiTwotoneStar} color={"yellow.500"}/>
 
             </Box>
           </Box>
@@ -50,11 +49,11 @@ const {
         </Box>
         <Box w={"100%"} display={"flex"}>
          <Box w={"100%"}>
-          <Heading fontSize={"sm"} color={"gray.500"} size={"sm"}>{Brand}</Heading>
+          <Heading fontSize={"sm"} color={"gray.500"} size={"sm"}>BeCool</Heading>
           <Text color={"gray.500"} fontSize={"xs"} w={"100%"}  >{Name}</Text>
           <Box spacing="2" display={"flex"}>
 
-          <Heading  size={"sm"}> ₹  {Price3} </Heading> 
+          <Heading  size={"sm"}> ₹ {Price3} </Heading> 
           <Text color={"gray.400"} as="s" pl={"2"} fontSize={"sm"}>{Price1}</Text>
           </Box>
           <Box my={"1"} px="2" w={"fit-content"} background={"gray.100"} >

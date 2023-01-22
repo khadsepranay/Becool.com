@@ -18,6 +18,15 @@ const getProductData = (params) => (dispatch) => {
     dispatch(getProductSuccess(res.data));
   });
 };
+const getProductWomensData = (params) => (dispatch) => {
+  dispatch(getProductReq());
+
+  axios.get(`http://localhost:8000/product/womens`).then((res) => {
+    console.log(res.data)
+    // setTempData(res.data)
+    dispatch(getProductSuccess(res.data));
+  });
+};
 
 const addToCart = (id) => (dispatch) =>{
 axios.get(`http://localhost:8000/cart/add/${id}`,{
@@ -32,7 +41,7 @@ axios.get(`http://localhost:8000/cart/add/${id}`,{
 }
 
 
-export { getProductData, getProductSuccess,addToCart };
+export { getProductData, getProductSuccess,addToCart,getProductWomensData };
 
 // getCartData=()=>(dispatch)=>{
 

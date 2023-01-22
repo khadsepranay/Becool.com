@@ -8,10 +8,10 @@ import OffersDropDown from "./SingleProductPage/SingleProductPageComps/OfferDrop
 import SinglePageProductDiv from './SingleProductPage/SingleProductPageComps/SinglePageProductDiv'
 import {AiTwotoneStar} from 'react-icons/ai'
 import { useLocation } from 'react-router-dom'
+
 function scrollToTop() {
     window.scrollTo(0, 0);
 }
-
 const SizeArray=["S","M","L","XL","2XL","3XL"]
 const SizeBoxes=(params)=>{
 
@@ -49,7 +49,7 @@ const SingleProductPage = () => {
     console.log(location)
     // window.location.reload()
     
-    scrollToTop()
+    
 
  useEffect(()=>{
     let Arr=[]
@@ -68,8 +68,8 @@ const SingleProductPage = () => {
     })
 
     setProArray(Arr)
+    scrollToTop()
 
-    
  },[AllProduct.length,params.id])
 
 //  useEffect(()=>{

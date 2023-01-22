@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import {useDispatch ,useSelector}from "react-redux"
 import { getProductData } from "../../../Redux/Vpawar/Actions"
+import Navbar from "../Navbar/Navbar"
 
 
 const ProductList = () => {
@@ -20,14 +21,19 @@ const ProductList = () => {
 
 
   useEffect(()=>{
-
+    
       dispatch(getProductData())
   },[])
 
 
   return (
-    <Box   textAlign={"left"} margin={"auto"} w={"85%"}>
-        <Box mt="30rem" my="4">
+    <Box margin="0" padding="0" >
+      <Box top="0" left="0" m="0" p="0" position="absolute">
+
+      <Navbar/>
+      </Box>
+       <Box  textAlign={"left"} margin={"auto"} w={"85%"}>
+        <Box my="4">
           <Heading >
             Men Clothing
           </Heading>
@@ -62,9 +68,48 @@ const ProductList = () => {
           <Box textAlign={"right"}>
             <Text>Sort By</Text>
           </Box>
-          <SimpleGrid mb="10rem" mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
+          <SimpleGrid  mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
 
-      
+            {/* <VStack>
+             
+              <Box w={"100%"}>
+              <Box  h={0}  pos={"relative"} >
+                  <Box px="2" color={"white"} w={"fit-content"} background={"green.300"}>   
+                  BUY 3 FOR 
+
+                  </Box>
+                </Box>
+                <Img src="https://images.bewakoof.com/t640/men-s-black-relaxed-fit-short-kurta-302583-1663931104-1.jpg" />
+
+                <Box  h={0}  pos={"relative"} bottom={"12%"}>
+                  <Box px="2" w={"fit-content"} background={"whiteAlpha.500"}>   
+                  ratings
+
+                  </Box>
+                </Box>
+               
+              </Box>
+              <Box w={"100%"} display={"flex"}>
+               <Box w={"100%"}>
+                <Heading fontSize={"sm"} color={"gray.500"} size={"sm"}>BeCool</Heading>
+                <Text color={"gray.500"} fontSize={"xs"} w={"100%"} Color="gray.900" >Men's Black Relaxed Fit Short Kurta</Text>
+                <Heading size={"sm"}>Rs.549</Heading>
+                <Box background={"gray.100"} >
+                    <Text fontSize={"sm"}>
+                  333 For Tribe Member
+                </Text>
+                </Box>
+               
+              </Box>
+              <Box>
+                <Heading size={"sm"}>
+                 Icon
+                </Heading>
+              </Box>
+            
+              </Box>
+            </VStack>
+             */}
              {
               ProductData.map((el)=> <SingleProductDiv key={el._id} {...el}/> )
              }
@@ -79,6 +124,8 @@ const ProductList = () => {
 
     </Box>
     </Box>
+    </Box>
+   
     
   )
 
