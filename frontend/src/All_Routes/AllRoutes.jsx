@@ -9,8 +9,8 @@ function All_Routes(){
             <Route path="/" element={<Home/>}></Route>
             <Route path="/mens"></Route>
             <Route path="/womens"></Route>
-            <Route path="/mobile" element={<MobCovOpt/>}></Route>
-            <Route path="/covers" element={<Covers/>}></Route>
+            <Route path="/mobiles" element={<MobCovOpt/>}></Route>
+            <Route path="/mobiles/covers" element={<Covers/>}></Route>
         </Routes>
     )
 }

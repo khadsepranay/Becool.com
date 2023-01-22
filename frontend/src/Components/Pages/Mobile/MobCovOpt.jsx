@@ -8,13 +8,16 @@ const MobCovOpt = () => {
 
   const toCoverPage = (e) => {
     console.log(e.target.innerText);
-    navigate("/covers");
+    navigate("/mobiles/covers");
   };
   const toCoverPage1 = (e) => {
     const option = clickRef.current.value;
     console.log(option);
     if (option) {
-      navigate("/covers");
+      navigate("/mobiles/covers");
+    }
+    else{
+      alert("Please select brand or click on any popular brand")
     }
   };
 
