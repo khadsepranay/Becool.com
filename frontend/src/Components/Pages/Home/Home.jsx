@@ -32,7 +32,7 @@ const Home = () => {
     <Box bg={"white"}>
    
 
-<Box>
+<Box paddingTop={"90px"}>
 <Flex mb={"20px"}  gap={"10px"}>
           <Box>          
             <img  src='https://images.bewakoof.com/uploads/grid/app/revamped-banner-1x1-B3A899-new1-1674029532.jpg' alt='Dan Abramov' />

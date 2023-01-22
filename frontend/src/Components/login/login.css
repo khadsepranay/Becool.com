@@ -1,0 +1,58 @@
+.Login_main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.Login_img {
+  height: 70%;
+
+  /* padding: 10px; */
+  display: flex;
+  align-items: center;
+}
+.Login_form {
+  height: 70%;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: antiquewhite;
+}
+
+.Login_text {
+  position: absolute;
+  top:8%;
+  left: 8%;
+}
+.in {
+  margin-top: 2rem;
+}
+.in > input {
+  width: 50%;
+  height: 3rem;
+  margin-top: 1.5rem;
+  border-radius: 5px;
+}
+@media (min-width: 1260px) and (max-width: 1460px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1260px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 630px) and (max-width: 1024px) {
+  html {
+    font-size: 60%;
+  }
+}

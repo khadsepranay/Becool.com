@@ -3,13 +3,14 @@ import { Routes, Route } from "react-router-dom";
 import Cart from "../Components/Pages/Cart/Cart";
 import Home from "../Components/Pages/Home/Home";
 import ProductList from "../Components/Pages/Mens/ProductList";
-import ProductListW  from "../Components/Pages/Womes/ProductListW";
+import ProductListW from "../Components/Pages/Womes/ProductListW";
 import SingleProductPage from "../Components/Pages/Mens/SingelProductPage";
+import { Login } from "../Components/login/Login";
+import { Register } from "../Components/register/Register";
+import { Checkout } from "../Components/Pages/chechout/Checkout";
 function AllRoutes() {
   return (
     <Routes>
-
-
       {/* "Anju" */}
       <Route
         path="/"
@@ -20,9 +21,7 @@ function AllRoutes() {
         }
       ></Route>
 
-{/* vikas pawar */}
-
-
+      {/* vikas pawar */}
 
       <Route
         path="/product/mens"
@@ -40,12 +39,14 @@ function AllRoutes() {
           </ChakraProvider>
         }
       />
-      <Route path="/product/womens" element={
-        <ChakraProvider>
-
-          <ProductListW/>
-        </ChakraProvider>
-      }></Route>
+      <Route
+        path="/product/womens"
+        element={
+          <ChakraProvider>
+            <ProductListW />
+          </ChakraProvider>
+        }
+      ></Route>
       <Route
         path="/singleproduct/womens/:id"
         element={
@@ -55,22 +56,18 @@ function AllRoutes() {
         }
       />
 
-
-
-{/* vikas */}
+      {/* vikas */}
 
       <Route path="/mobiles"></Route>
       <Route path="/mobiles/covers"></Route>
 
-    
-
-
-{/* pranay */}
+      {/* pranay */}
       <Route path="/carts" element={<Cart />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/register" element={<Register />}></Route>
+      <Route path="/carts/checkout" element={<Checkout/>}></Route>
+
     </Routes>
-
-
-
   );
 }
 
