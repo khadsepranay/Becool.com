@@ -1,25 +1,30 @@
 .main_div{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 80%;
     margin:50px auto;
 }
 .main_cov_div{
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: grid;
     grid-template-columns:repeat(3,1fr);
-    gap: 10px;
+    gap: 20px;
 }
 .cov_div{
-    border:1px solid rgb(2, 122, 2);
+    /* border:1px solid rgb(170, 170, 170); */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-radius: 10px;
 }
+
 /* covers image */
 .cov_div>.cov_image>img{
+    cursor: pointer;
     width: 100%;
 }
 
 /* covers information */
 .cov_info{
-    padding: 5px;
+    color: rgb(88, 88, 88);
+    padding: 20px;
 }
 .name_heart{
     margin: -20px 0px;

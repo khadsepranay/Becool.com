@@ -23,6 +23,7 @@
 .inputsDiv {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 25px;
   justify-content: space-between;
 }
 .inputsDiv > select {
@@ -49,6 +50,9 @@
 }
 
 /* popular options */
+.popular{
+  padding-bottom: 30px;
+}
 .popular > p {
   color: rgb(138, 136, 136);
 }
@@ -56,16 +60,15 @@
   display: flex;
   flex-wrap: wrap;
   /* border: 1px solid red; */
-  margin-top: -20px;
+  margin-top: 20px;
   width: 80%;
   gap: 20px 100px;
 }
-.pop_opt > p  {
-  /* border: 1px solid green; */
+
+.pop_opt > p {
+  color: #3f3f3f;
   width: 80px;
-}
-.pop_opt > p > a {
-  color:#3f3f3f;
+  cursor: pointer;
 }
 
 /* Image */
@@ -84,11 +87,12 @@
   margin: auto;
   padding: 30px 20px;
 }
-.extra_info>b{
-    font-size: 12px;
-    color: #5e5c5c;
+.extra_info > b {
+  font-size: 12px;
+  color: #5e5c5c;
 }
-.extra_info>p{
-    font-size: 14px;
-    color: #a1a1a1;
+.extra_info > p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #a1a1a1;
 }

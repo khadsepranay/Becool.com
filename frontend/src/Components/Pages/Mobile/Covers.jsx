@@ -1,11 +1,12 @@
 import "./Covers.css";
-import { ImStarFull } from 'react-icons/im';
-import { SlHeart } from 'react-icons/sl';
-import { ImHeart } from 'react-icons/im';
-import { TbCurrencyRupee } from 'react-icons/tb';
+import { Link } from "react-router-dom";
+import { ImStarFull } from "react-icons/im";
+import { SlHeart } from "react-icons/sl";
+import { ImHeart } from "react-icons/im";
+import { TbCurrencyRupee } from "react-icons/tb";
+import { useState } from "react";
 
-const Covers = () => {
-  const data = [
+const data = [
     // apple
     {
       comp: "Apple",
@@ -435,30 +436,54 @@ const Covers = () => {
     },
   ];
 
+const Covers = () => {
+  const [sortData,setSortDat]=useState(data)
+  const addToFav = () => {
+    console.log("yes");
+  };
+
+  const toCoverPage = () => {
+    console.log("redirect");
+  };
+
+  
+
   return (
     <div className="main_div">
       <h1>Mobile Covers ({data.length})</h1>
       <div className="main_cov_div">
-        {data.map((ele, ind) => {
+        {sortData&&sortData.map((ele, ind) => {
           return (
             <div key={ind} className="cov_div">
-              <div className="cov_image">
-                <img
-                  style={{ border: "1px solid red" }}
-                  src={ele.img_url}
-                  alt="cover image"
-                />
+              <div onClick={toCoverPage} className="cov_image">
+                  <img src={ele.img_url} alt="cover image" />
               </div>
               <div className="cov_info">
                 <h4>{ele.comp}</h4>
                 <div className="name_heart">
                   <h4>{ele.name}</h4>
-                  {ele.flag==false?<SlHeart fontSize={"20px"}/>:<ImHeart fontSize={"20px"} color={"red"}/>}
+                  {ele.flag ? (
+                    <ImHeart
+                      onClick={addToFav}
+                      fontSize={"20px"}
+                      color={"red"}
+                    />
+                  ) : (
+                    <SlHeart onClick={addToFav} fontSize={"20px"} />
+                  )}
                 </div>
-                <p style={{fontSize:"14px"}}>{ele.cover}</p>
-                <p ><ImStarFull color={"yellow"} /> { ele.rating}</p>
-                <b ><TbCurrencyRupee/>{ele.price}</b>
-                <p style={{textDecoration:"line-through", color:"grey"}}><TbCurrencyRupee/>{ele.ini_price}</p>
+                <p style={{ fontSize: "14px" }}>{ele.cover}</p>
+                <p>
+                  <ImStarFull color={"yellow"} /> {ele.rating}
+                </p>
+                <b>
+                  <TbCurrencyRupee />
+                  {ele.price}
+                </b>
+                <p style={{ textDecoration: "line-through", color: "grey" }}>
+                  <TbCurrencyRupee />
+                  {ele.ini_price}
+                </p>
               </div>
             </div>
           );

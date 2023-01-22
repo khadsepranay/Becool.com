@@ -1,13 +1,22 @@
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./MobCovOpt.css";
 
 const MobCovOpt = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
+  const clickRef = useRef();
 
-    const toCoverPage=(e)=>{
-        console.log(e.target.value)
-        navigate("/covers")
+  const toCoverPage = (e) => {
+    console.log(e.target.innerText);
+    navigate("/covers");
+  };
+  const toCoverPage1 = (e) => {
+    const option = clickRef.current.value;
+    console.log(option);
+    if (option) {
+      navigate("/covers");
     }
+  };
 
   return (
     <>
@@ -16,7 +25,7 @@ const MobCovOpt = () => {
         <div className="opt_img">
           <div className="opt">
             <div className="inputsDiv">
-              <select name="Select" onChange={(e)=>toCoverPage(e)}>
+              <select name="Select" ref={clickRef}>
                 <option value="">Select Brand</option>
                 <option value="Apple">Apple</option>
                 <option value="Samsung">Samsung</option>
@@ -25,24 +34,24 @@ const MobCovOpt = () => {
                 <option value="Xiaome">Xiaome</option>
               </select>
               <input type="text" placeholder="Select Model" />
-              <button>Search</button>
+              <button onClick={(e) => toCoverPage1(e)}>Search</button>
             </div>
             <div className="popular">
               <p>POPULAR</p>
-              <div className="pop_opt" >
-                <p><Link to={"/covers"}>Apple</Link></p>
-                <p><Link>Samsung</Link></p>
-                <p><Link>Realme</Link></p>
-                <p><Link>OnePlus</Link></p>
-                <p><Link>Xiaome</Link></p>
-                <p><Link>Vivo</Link></p>
+              <div className="pop_opt">
+                <p onClick={(e) => toCoverPage(e)}>Aple</p>
+                <p onClick={(e) => toCoverPage(e)}>Samsung</p>
+                <p onClick={(e) => toCoverPage(e)}>Realme</p>
+                <p onClick={(e) => toCoverPage(e)}>OnePlus</p>
+                <p onClick={(e) => toCoverPage(e)}>Xiaome</p>
+                <p onClick={(e) => toCoverPage(e)}>Vivo</p>
               </div>
               <br />
               <p>OTHER BRANDS</p>
               <div className="pop_opt">
-                <p><Link>Oppo</Link></p>
-                <p><Link>Huawei</Link></p>
-                <p><Link>Moto</Link></p>
+                <p onClick={(e) => toCoverPage(e)}>Oppo</p>
+                <p onClick={(e) => toCoverPage(e)}>Huawei</p>
+                <p onClick={(e) => toCoverPage(e)}>Moto</p>
               </div>
             </div>
           </div>
