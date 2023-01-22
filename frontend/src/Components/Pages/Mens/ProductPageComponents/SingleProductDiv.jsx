@@ -21,7 +21,7 @@ const {
     
     return(
         <VStack  className="zoom" w={"100%"}>
-      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`p/${_id}`}>
+      <Link style={{textDecoration:"inherit" , margin:"0",padding:"0"}} to={`/singleproduct/mens/${_id}`}>
        <Box  w={"100%"}>
         <Box top={1} h={"0"}  pos={"relative"} >
             <Box px="2"  color={"white"} w={"fit-content"} background={"green.300"}>   

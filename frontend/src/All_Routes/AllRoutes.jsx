@@ -3,27 +3,38 @@ import { Routes, Route } from "react-router-dom";
 import Cart from "../Components/Pages/Cart/Cart";
 import Home from "../Components/Pages/Home/Home";
 import ProductList from "../Components/Pages/Mens/ProductList";
-import SingleProductPage from "../Components/Pages/Mens/SingelProductPage"
+import SingleProductPage from "../Components/Pages/Mens/SingelProductPage";
 function AllRoutes() {
   return (
     <Routes>
-      <Route path="/" 
-      element={<ChakraProvider> <Home /></ChakraProvider>}></Route>
-      <Route path="/mens"  element={
+      <Route
+        path="/"
+        element={
+          <ChakraProvider>
+            <Home />
+          </ChakraProvider>
+        }
+      ></Route>
 
-        <ChakraProvider>
-          <ProductList/>
-        </ChakraProvider>
-    
-    }></Route>
-    <Route path="mens/p/:id"  element={
-      <ChakraProvider>
-        <SingleProductPage/>
-      </ChakraProvider>
-    }/>
-      <Route path="/womens" ></Route>
+      <Route
+        path="/product/mens"
+        element={
+          <ChakraProvider>
+            <ProductList />
+          </ChakraProvider>
+        }
+      ></Route>
+      <Route
+        path="/singleproduct/mens/:id"
+        element={
+          <ChakraProvider>
+            <SingleProductPage />
+          </ChakraProvider>
+        }
+      />
+      <Route path="/womens"></Route>
       <Route path="/mobiles"></Route>
-      <Route path="/carts" element={<Cart/>}></Route>
+      <Route path="/carts" element={<Cart />}></Route>
     </Routes>
   );
 }

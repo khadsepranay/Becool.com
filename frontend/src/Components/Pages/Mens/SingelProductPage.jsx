@@ -2,12 +2,13 @@ import { Box, Button, Flex, Heading, HStack, Img, SimpleGrid, Text, VStack,Icon 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProductData } from "../../../Redux/Vpawar/Actions"
+import { getProductData,addToCart } from "../../../Redux/Vpawar/Actions"
 import "../Mens/SingleProductPage/SingleProductPageComps/SinglePage.model.css"
 import OffersDropDown from "./SingleProductPage/SingleProductPageComps/OfferDropDown"
 import SinglePageProductDiv from './SingleProductPage/SingleProductPageComps/SinglePageProductDiv'
 import {AiTwotoneStar} from 'react-icons/ai'
 import { useLocation } from 'react-router-dom'
+
 
 const SizeArray=["S","M","L","XL","2XL","3XL"]
 const SizeBoxes=(params)=>{
@@ -204,7 +205,7 @@ const handleMainImg=(e)=>{
                                     </HStack>
                                     <Box   my="5" >
                                         <HStack gap={'2'} >
-                                            <Button background={'yellow.300'} px='80px'>ADD TO BAG</Button>
+                                            <Button background={'yellow.300'} px='80px' onClick={()=>dispatch(addToCart(pData._id))}>ADD TO BAG</Button>
                                             <Button border={'0.5px solid gray'} color='gray.400' background={'white'} px='50px'>WISHLIST</Button>
                                         </HStack>
                                     </Box>

@@ -1,8 +1,8 @@
-import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { Box } from "@mui/system";
+import { Button } from "@mui/material";
+import {Box} from "@mui/material";
 import { useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux'
-import {getData,increaseCartData} from "../../../Redux/Pranay/Actions";
+import {getData,increaseCartData,decreaseCartData, deleteCartItem} from "../../../Redux/Pranay/Actions";
 
 let CartBody = () => {
     let data = [
@@ -36,6 +36,20 @@ let CartBody = () => {
 
     let state = useSelector((state)=>state)
     console.log(state)
+    let CartData = state.Cart.CartData
+
+    let TotalPrice = 0
+    let ActualPrice = 0
+    for(let i=0;i<CartData.length;i++){
+      TotalPrice = TotalPrice + Number(CartData[i].productid['Price1'])*CartData[i]['Quantity']
+      ActualPrice = ActualPrice + Number(CartData[i].productid['Price'])*CartData[i]['Quantity']
+    }
+    let ShippingCharges = 0
+    if(ActualPrice<499 && ActualPrice>0){
+      ShippingCharges = 99
+      ActualPrice = ActualPrice + ShippingCharges
+    }
+    console.log(ActualPrice)
 
   return (
     <Box
@@ -66,6 +80,7 @@ let CartBody = () => {
         <Box>
           {
             state.Cart.CartData.map((el)=>{
+              let totalQuantity = el.Quantity+el.productid.Quantity
             return <Box sx={{
             border: "1px solid #DEE2E4",
             height: "250px",
@@ -94,16 +109,16 @@ let CartBody = () => {
           </Box>
           <Box sx={{margin:'2px 0px 6px 0px',color:'green'}}>You Saved ₹{el.productid.Price1-el.productid.Price}</Box>
           <Box>
-            Quantity : <Button>-</Button>{el.Quantity}<Button onClick={()=>dispatch(increaseCartData(el.productid._id))}>+</Button>
+            Quantity : <Button disabled={el.Quantity==1} onClick={()=>dispatch(decreaseCartData(el.productid._id))}>-</Button>{el.Quantity}<Button onClick={()=>dispatch(increaseCartData(el.productid._id))} disabled={el.Quantity===totalQuantity}>+</Button>
           </Box>
-          <Box sx={{margin:'5px 0px 25px',color:'red'}}>Hurry! only 1 left</Box>
+          <Box sx={{margin:'5px 0px 25px',color:'red'}}>Hurry! only {totalQuantity} left</Box>
           </Box>
           <Box>
-        <Box component='img' src="https://images.bewakoof.com/t320/men-s-purpleriot-xxxtentican-oversized-t-shirt-568932-1673613239-1.jpg" width='100px'></Box>
+        <Box component='img' src={el.productid.Image1} width='100px'></Box>
         </Box>
         </Box>
         <Box sx={{display:'flex', justifyContent:'space-around',textAlign:'center',alignItems:'center', borderTop:'1px solid grey',padding:'10px',gap:'20px'}}>
-            <Button sx={{width:'100%',backgroundColor:'#F3F0F0',color:'grey'}}>Remove</Button>
+            <Button sx={{width:'100%',backgroundColor:'#F3F0F0',color:'white',backgroundColor:'red',":hover":{backgroundColor:'#FF3333'}}} onClick={()=>dispatch(deleteCartItem(el._id))}>Remove</Button>
             <Button  sx={{width:'100%',backgroundColor:'#F3F0F0',color:'grey'}}>Move to wishlist</Button>
         </Box>
         </Box>
@@ -143,18 +158,18 @@ let CartBody = () => {
                 <Box>Subtotal</Box>
               </Box>
               <Box sx={{textAlign:'left',lineHeight:'35px',fontSize:'13px'}}>
-                <Box>₹1499</Box>
-                <Box>FREE</Box>
-                <Box>-₹1000</Box>
-                <Box>₹499</Box>
+                <Box>₹{TotalPrice}</Box>
+                <Box>₹{ActualPrice==0?'0':ActualPrice>499?'FREE':'99'}</Box>
+                <Box>-₹{TotalPrice-ActualPrice}</Box>
+                <Box>₹{ActualPrice}</Box>
               </Box>
             </Box>
-            <Box sx={{borderRadius:'15px',border:'1px solid #DEE2E4',margin:'0px auto 25px',padding:'5px',boxSizing:'border-box',width:'80%',backgroundColor:'#F1F4F5',color:'green'}}>You are saving ₹1000 on this order</Box>
+            <Box sx={{borderRadius:'15px',border:'1px solid #DEE2E4',margin:'0px auto 25px',padding:'5px',boxSizing:'border-box',width:'80%',backgroundColor:'#F1F4F5',color:'green'}}>You are saving ₹{TotalPrice-ActualPrice} on this order</Box>
         </Box>
         <Box sx={{display:'flex',justifyContent:'space-between',padding:'15px',border:'1px solid #DEE2E4',borderRadius:'5px'}}>
           <Box>
             <Box>Total</Box>
-            <Box>₹ 499</Box>
+            <Box>₹ {ActualPrice}</Box>
           </Box>
           <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px',":hover":{backgroundColor:'#008888'}}}>CONTINUE</Button>
         </Box>

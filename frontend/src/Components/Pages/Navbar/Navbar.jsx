@@ -7,7 +7,6 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -24,6 +23,7 @@ import {
 } from '@chakra-ui/icons';
 import {AiOutlineShoppingCart}from "react-icons/ai"
 import {BsSearch} from "react-icons/bs"
+import { Link } from 'react-router-dom';
 
 
 export default function Navbar() {
@@ -69,9 +69,8 @@ export default function Navbar() {
             <Box>
           <Flex display={{ base: 'none', md: 'flex' }} ml={50}gap={"40px"} mt={"50px"}  fontWeight={400}>
               
-            <Text>Mens </Text>
-            <Text>Womens </Text>
-            <Text>Mobile Covers </Text>
+            <Link to='/product/mens'><Text>Mens </Text></Link>
+            <Link to="/carts"><Text>Cart </Text></Link>
           </Flex>
             </Box>
         </Flex>

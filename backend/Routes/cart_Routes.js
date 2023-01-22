@@ -22,7 +22,7 @@ cart.get("/", userAuthMiddleware, async (req, res) => {
   }
 });
 
-cart.post("/add/:id", userAuthMiddleware, async (req, res) => {
+cart.get("/add/:id", userAuthMiddleware, async (req, res) => {
   const userid = req.body.userid;
   const productid = req.params.id;
   let CartItem = await CartModel.findOne({userid,productid})
@@ -77,10 +77,11 @@ cart.get('/cartquantityadd/:id',userAuthMiddleware ,async(req,res)=>{
 }
 )
 
-cart.post('/cartquantityreduce/:id',userAuthMiddleware, async(req,res)=>{
+cart.get('/cartquantityreduce/:id',userAuthMiddleware, async(req,res)=>{
   let productid = req.params.id
   let userid = req.body.userid
   let CartItem = await CartModel.findOne({productid,userid})
+  console.log(CartItem.Quantity)
   if(CartItem.Quantity<1){
     res.send('Cannot decrease')
   }else{
@@ -90,7 +91,11 @@ cart.post('/cartquantityreduce/:id',userAuthMiddleware, async(req,res)=>{
     let product = await ProductModel.findByIdAndUpdate(productid,{Quantity:productQuantity},{new:true})
     let cartQuantity = CartItem.Quantity - 1
     await CartModel.findOneAndUpdate({userid,productid},{Quantity:cartQuantity},{new:true})
-    res.send('Item Decreased')
+    let CartData = await CartModel.find().populate([
+      "userid",
+      "productid"
+    ])
+    res.send(CartData)
   }catch(err){
     res.send(err)
   }
@@ -109,9 +114,20 @@ cart.delete("/delete/:id", userAuthMiddleware, async (req, res) => {
     let totalQuantity = cartQuantity + productQuantity
     await ProductModel.findByIdAndUpdate(ProductID,{Quantity:totalQuantity},{new:true})
     await CartModel.findByIdAndDelete(id);
-    res.send("Product Delete To Cart");
+    let CartData = await CartModel.find().populate([
+      "userid",
+      "productid"
+    ])
+    res.send(CartData)
   }catch(err){
     res.send(err)
   }
 });
+
+cart.post('/success',async(req,res)=>{
+  
+})
+
+
+
 module.exports = { cart };

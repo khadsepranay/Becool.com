@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { NavLink } from 'react-router-dom';
-import Navbar from"../Navbar/Navbar"
 import Homes from './Homes';
 import Gang from './Gang';
 import Banner from './Carousel';
@@ -18,7 +17,7 @@ const Home = () => {
     const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      let res = await axios.get("http://localhost:8080/homepage");
+      let res = await axios.get("http://localhost:8000/product/mens");
       setData(res.data.slice(12,19));
       console.log(res);
     };
@@ -29,7 +28,6 @@ const Home = () => {
   return (
     <>
     <Box bg={"white"}>
-      <Navbar/>
 <Banner  />
     
     <img  style={{ width:"100%"}}src='https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669115141.jpg' alt='Dan Abramov' />
@@ -67,9 +65,9 @@ const Home = () => {
         </SimpleGrid>
           <Text  fontSize={"35"} color={"black"} mt={"10"}>DESIGN OF THE WEEK</Text>
         <Flex>
-          <Box>          
+          <NavLink to='/product/mens'><Box>         
             <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Men-1673937544.jpg' alt='Dan Abramov' />
-          </Box>
+          </Box></NavLink>
           <Box>           
              <img  src='https://images.bewakoof.com/uploads/grid/app/DOTW-Split-banner-Desktop-Women--1673937544.jpg' alt='Dan Abramov' />
             </Box>
