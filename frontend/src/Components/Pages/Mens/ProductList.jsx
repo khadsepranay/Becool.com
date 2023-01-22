@@ -1,27 +1,27 @@
-import { Box, Heading, Img, SimpleGrid, Text, VStack } from "@chakra-ui/react"
+import { Box, Heading, Img, SimpleGrid, Skeleton, Text, useTimeout, VStack } from "@chakra-ui/react"
 import React from "react"
 // import SingleProductDiv from "../SingleProductDiv"
 // import CategorySelector from "./FiltersComponent"
 import SingleProductDiv from "../Mens/ProductPageComponents/SingleProductDiv"
 import CategorySelector from "../Mens/ProductPageComponents/FiltersComponent"
 import { Link } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 import {useDispatch ,useSelector}from "react-redux"
 import { getProductData } from "../../../Redux/Vpawar/Actions"
 
 
 const ProductList = () => {
+const [isLoaded,setIsLoaded]=useState(false)
 
+useTimeout(()=>setIsLoaded(true),1500)
   const dispatch=useDispatch()
 
   const ProductData=useSelector((store)=>store.ProductReducer.ProductData)
   // console.log("Product Data ",ProductData)
 
 
-
   useEffect(()=>{
-
-      dispatch(getProductData())
+    dispatch(getProductData())
   },[])
 
 
@@ -53,8 +53,10 @@ const ProductList = () => {
               }}
             
             height="90vh"   >
-
-            <CategorySelector />
+              {
+                !isLoaded ? <Skeleton h="300px" w="100%"></Skeleton>:<CategorySelector />
+              }
+            
             </Box>
           </Box>
         </Box>
@@ -62,7 +64,9 @@ const ProductList = () => {
           <Box textAlign={"right"}>
             <Text>Sort By</Text>
           </Box>
-          <SimpleGrid mb="10rem" mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
+          {
+            isLoaded?<Skeleton mx="2rem" w="800px" h="800px"></Skeleton>
+:        <SimpleGrid mb="10rem" mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
 
       
              {
@@ -71,7 +75,8 @@ const ProductList = () => {
             
         
 
-          </SimpleGrid>
+          </SimpleGrid>   }
+         
         </Box>
       </Box>
 

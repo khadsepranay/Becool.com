@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import {Box} from "@mui/material";
 import { useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux'
+import { Link } from "react-router-dom";
 import {getData,increaseCartData,decreaseCartData, deleteCartItem} from "../../../Redux/Pranay/Actions";
 
 let CartBody = () => {
@@ -35,7 +36,6 @@ let CartBody = () => {
     },[])
 
     let state = useSelector((state)=>state)
-    console.log(state)
     let CartData = state.Cart.CartData
 
     let TotalPrice = 0
@@ -49,7 +49,6 @@ let CartBody = () => {
       ShippingCharges = 99
       ActualPrice = ActualPrice + ShippingCharges
     }
-    console.log(ActualPrice)
 
   return (
     <Box
@@ -171,7 +170,7 @@ let CartBody = () => {
             <Box>Total</Box>
             <Box>₹ {ActualPrice}</Box>
           </Box>
-          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px',":hover":{backgroundColor:'#008888'}}}>CONTINUE</Button>
+          <Button sx={{width:'60%',backgroundColor:'#42a2a2',color:'white',gap:'50px',":hover":{backgroundColor:'#008888'}}}><Link to='/carts/checkout' style={{textDecoration:'none',color:'white'}} disabled={ActualPrice<=0}>CHECKOUT</Link></Button>
         </Box>
       </Box>
     </Box>

@@ -1,13 +1,15 @@
-import { Box, Button, Flex, Heading, HStack, Img, SimpleGrid, Text, VStack,Icon } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Img, SimpleGrid, Text, VStack,Icon, useTimeout, Skeleton } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProductData,addToCart } from "../../../Redux/Vpawar/Actions"
+import { getProductData,addToCart,isadded } from "../../../Redux/Vpawar/Actions"
 import "../Mens/SingleProductPage/SingleProductPageComps/SinglePage.model.css"
 import OffersDropDown from "./SingleProductPage/SingleProductPageComps/OfferDropDown"
 import SinglePageProductDiv from './SingleProductPage/SingleProductPageComps/SinglePageProductDiv'
 import {AiTwotoneStar} from 'react-icons/ai'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
+import { GiFalloutShelter } from "react-icons/gi"
+
 function scrollToTop() {
     window.scrollTo(0, 0);
 }
@@ -38,18 +40,22 @@ let i=0
 
 const SingleProductPage = () => {
     // let A=[]
+    const [isLoaded,setIsLoaded]=useState(false)
+    useTimeout(()=>setIsLoaded(true),1500)
     const dispatch=useDispatch()
     const AllProduct=useSelector((store)=>store.ProductReducer.ProductData)
+    const isAdded = useSelector((store)=>store.ProductReducer.isAddedtoCart)
     const [pData,setPdata]=useState({})
     const [proArray,setProArray]=useState([])
     const [mainImg,setMainImg]=useState('Image')
     const params=useParams()
     // const proArray=[]
     const location=useLocation()
-    console.log(location)
     // window.location.reload()
     
     scrollToTop()
+    
+        dispatch(isadded(pData._id))
 
  useEffect(()=>{
     let Arr=[]
@@ -72,9 +78,7 @@ const SingleProductPage = () => {
     
  },[AllProduct.length,params.id])
 
-//  useEffect(()=>{
-
-//  },[])
+ 
 
 const handleMainImg=(e)=>{
     // console.log(e.target.src)
@@ -100,6 +104,7 @@ const handleMainImg=(e)=>{
                 w={"100%"}>
 
                     <VStack p={""} w={"30%"}  >
+                        {isLoaded?<Skeleton></Skeleton>:
                         <Box p="4" w={"80%"}>
                             <VStack>
                                 <Img onClick={(e)=>handleMainImg(e)} src={pData.Image_Main}/>
@@ -110,14 +115,21 @@ const handleMainImg=(e)=>{
                             </VStack>
 
                         </Box>
+                        }
+                        
 
 
                     </VStack>
-                    <Box h={"100%"}  w={"100%"}>
+                    {
+                        isLoaded?<Skeleton></Skeleton>:
+
+                            <Box h={"100%"}  w={"100%"}>
                         {/* <Img src="https://images.bewakoof.com/t1080/men-s-black-deathnote-ryuk-oversized-t-shirt-568923-1673597452-1.jpg" /> */}
                         <Img src={`${mainImg}`}/>
                     </Box>
 
+                    }
+                
 
 
                 </Flex>
@@ -207,8 +219,8 @@ const handleMainImg=(e)=>{
                                     </HStack>
                                     <Box   my="5" >
                                         <HStack gap={'2'} >
-                                            <Button background={'yellow.300'} px='80px' onClick={()=>dispatch(addToCart(pData._id))}>ADD TO BAG</Button>
-                                            <Button border={'0.5px solid gray'} color='gray.400' background={'white'} px='50px'>WISHLIST</Button>
+                                            <Button disabled={isAdded==true} background={'yellow.300'} px='80px' onClick={()=>dispatch(addToCart(pData._id))}>{isAdded?'Already added to cart':"ADD TO BAG"}</Button>
+                                            <Link to='/carts'><Button border={'0.5px solid gray'} color='gray.400' background={'white'} px='50px'>Go to Cart</Button></Link>
                                         </HStack>
                                     </Box>
                                     {/* <HorizontalDivider/> */}

@@ -21,11 +21,13 @@
 
 // export { reducer };
 import React from "react";
+import { isAddedToCart } from "./Action.types";
 
 const initState = {
   ProductData: [],
   isLoading: false,
   isError: false,
+  isAddedtoCart: false,
 };
 
 const reducer = (state = initState, action) => {
@@ -39,6 +41,8 @@ const reducer = (state = initState, action) => {
       };
     case "PRODUCT_REQ":
       return { ...state, isLoading: true, isError: false };
+    case isAddedToCart:
+      return { ...state, isAddedtoCart: action.payload };
     default:
       return state;
   }

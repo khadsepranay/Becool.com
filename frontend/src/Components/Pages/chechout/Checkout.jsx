@@ -1,8 +1,42 @@
 import React from "react";
 import "./checkout.css";
+import axios from "axios";
+import {useDispatch,useSelector} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 
 import { Button, Divider, FormControl, FormHelperText, FormLabel, HStack, Image, Input, PinInput, PinInputField, Text, VStack, Wrap } from '@chakra-ui/react'
 export const Checkout = () => {
+  let Navigate = useNavigate()
+  let state = useSelector((state)=>state)
+  let CartData = state.Cart.CartData
+  let TotalPrice = 0
+  let ActualPrice = 0
+  for(let i=0;i<CartData.length;i++){
+    TotalPrice = TotalPrice + Number(CartData[i].productid['Price1'])*CartData[i]['Quantity']
+    ActualPrice = ActualPrice + Number(CartData[i].productid['Price'])*CartData[i]['Quantity']
+  }
+  let ShippingCharges = 0
+  if(ActualPrice<499 && ActualPrice>0){
+    ShippingCharges = 99
+    ActualPrice = ActualPrice + ShippingCharges
+  }
+
+  function handleOrder(){
+    axios.delete('http://localhost:8000/cart/success',{
+      headers:{
+        auth:JSON.parse(localStorage.getItem('token'))
+      }
+    }).then((res)=>{
+      alert('Order placed successfully')
+      Navigate('/')
+    }).catch((err)=>{
+      alert('Something went wrong, please try again...')
+      Navigate('/carts')
+    })
+  }
+
+
+
   return (
    
       <div className="PM">
@@ -94,6 +128,7 @@ export const Checkout = () => {
                 autocomplete="cc-number"
                 maxlength="19"
                 placeholder="xxxx xxxx xxxx xxxx"
+                required={true}
               />
             </div>
 
@@ -101,16 +136,19 @@ export const Checkout = () => {
               <input className="last"
                 style={{ width: "75%" }}
                 placeholder="Valid through(MM/YY"
+                required={true}
               />
               <input className="last"
                 style={{ width: "20%" }}
                 type="number"
                 maxLength="4"
                 placeholder="CVV"
+                required={true}
               />
             </div>
             <div>
-              <input className="last"  type={"text"} placeholder="Name On Card" />
+              <input className="last"  type={"text"} placeholder="Name On Card"
+                required={true} />
             </div>
             <p>
               This transaction you make is totally secure. We don't save your
@@ -134,8 +172,9 @@ export const Checkout = () => {
                    fontSize:"20px",
                    background:"#42a2a2"
                 }}
+                onClick={()=>handleOrder()}
               >
-                Pay ₹234
+                {ActualPrice}
               </button>
             </div>
           </div>

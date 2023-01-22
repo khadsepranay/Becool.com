@@ -16,6 +16,10 @@ import Bags from './Bags';
 
 
 const Home = () => {
+  let token = JSON.parse(localStorage.getItem('token'))
+  if(token){
+
+  }
     const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {

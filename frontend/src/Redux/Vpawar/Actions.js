@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isAddedToCart } from "./Action.types";
 
 const getProductReq = () => {
   return {
@@ -29,19 +30,35 @@ const getProductWomensData = (params) => (dispatch) => {
 };
 
 const addToCart = (id) => (dispatch) =>{
+  let token = JSON.parse(localStorage.getItem('token'))
 axios.get(`http://localhost:8000/cart/add/${id}`,{
   headers:{
-    auth:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2M2NiZDM5ZDAwZjM1NzgxMzgyZGRjYzgiLCJpYXQiOjE2NzQzMDIzODZ9.SlTi38I3dUYLukabgbEFpinKFQ34OMcO1mPpcGndv_c"
+    auth: token
   }
 }).then((res)=>{
-  console.log(res.data)
+  dispatch({type:isAddedToCart,payload:true})
 }).catch((err)=>{
   console.log(err)
 })
 }
 
+let isadded = (id) =>(dispatch) =>{
+  let token = JSON.parse(localStorage.getItem('token'))
+  axios.get(`http://localhost:8000/cart/isadded/${id}`,{
+    headers:{
+      auth:token
+    }
+  }).then((res)=>{
+    if(res.data==true){
+      dispatch({type:isAddedToCart,payload:true})
+    }else{
+      dispatch({type:isAddedToCart,payload:false})
+    }
+  })
+}
 
-export { getProductData, getProductSuccess,addToCart,getProductWomensData };
+
+export { getProductData, getProductSuccess,addToCart,getProductWomensData, isadded };
 
 // getCartData=()=>(dispatch)=>{
 

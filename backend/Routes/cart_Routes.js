@@ -35,7 +35,7 @@ cart.get("/add/:id", userAuthMiddleware, async (req, res) => {
         let cartProduct = await CartModel.create({userid,productid,Quantity:1})
         newQuantity = Product.Quantity - 1
         await ProductModel.findByIdAndUpdate(productid,{Quantity:newQuantity})
-        res.send("Product Add To Cart ");
+        res.send("Product Add To Cart");
       }else{
         res.send(`Product with id:${productid} is out of stock`)
       }
@@ -124,8 +124,29 @@ cart.delete("/delete/:id", userAuthMiddleware, async (req, res) => {
   }
 });
 
-cart.post('/success',async(req,res)=>{
-  
+cart.get('/isadded/:id',userAuthMiddleware,async(req,res)=>{
+  let userid = req.body.userid
+  let productid = req.params.id
+  let Product = await CartModel.findOne({productid,userid})
+  console.log(Product)
+  try{
+    if(Product){
+      res.send(true)
+    }else{
+      res.send(false)
+    }
+  }catch(err){
+    res.send(false)
+  }
+})
+
+cart.delete('/success',userAuthMiddleware,async(req,res)=>{
+  try{
+    let Cart = await CartModel.deleteMany()
+    res.send('Order Successfully Placed')
+  }catch(err){
+    res.send(err)
+  }
 })
 
 

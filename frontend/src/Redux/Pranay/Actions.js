@@ -2,9 +2,10 @@ import { CartType } from "./Action.types";
 import axios from 'axios'
 
 let getData = () =>(dispatch)=>{
+    let token = JSON.parse(localStorage.getItem('token'))
     axios.get('http://localhost:8000/cart',{
         headers:{
-            auth:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2M2NiZDM5ZDAwZjM1NzgxMzgyZGRjYzgiLCJpYXQiOjE2NzQzMDIzODZ9.SlTi38I3dUYLukabgbEFpinKFQ34OMcO1mPpcGndv_c'
+            auth:token
         }
     }).then((res)=>{
         dispatch({type:CartType,payload:res.data})
@@ -14,9 +15,10 @@ let getData = () =>(dispatch)=>{
 }
 
 let increaseCartData = (id) =>(dispatch) =>{
+    let token = JSON.parse(localStorage.getItem('token'))
     axios.get(`http://localhost:8000/cart/cartquantityadd/${id}`,{
         headers:{
-            auth:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2M2NiZDM5ZDAwZjM1NzgxMzgyZGRjYzgiLCJpYXQiOjE2NzQzMDIzODZ9.SlTi38I3dUYLukabgbEFpinKFQ34OMcO1mPpcGndv_c'
+            auth:token
         }
     }).then((res)=>{
         console.log(res)
@@ -27,9 +29,10 @@ let increaseCartData = (id) =>(dispatch) =>{
 }
 
 let decreaseCartData = (id) =>(dispatch) =>{
+    let token = JSON.parse(localStorage.getItem('token'))
     axios.get(`http://localhost:8000/cart/cartquantityreduce/${id}`,{
         headers:{
-            auth:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2M2NiZDM5ZDAwZjM1NzgxMzgyZGRjYzgiLCJpYXQiOjE2NzQzMDIzODZ9.SlTi38I3dUYLukabgbEFpinKFQ34OMcO1mPpcGndv_c'
+            auth:token
         }
     }).then((res)=>{
         console.log(res)
@@ -40,9 +43,10 @@ let decreaseCartData = (id) =>(dispatch) =>{
 }
 
 let deleteCartItem = (id) =>(dispatch)=>{
+    let token = JSON.parse(localStorage.getItem('token'))
     axios.delete(`http://localhost:8000/cart/delete/${id}`,{
         headers:{
-            auth:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2M2NiOWQxNzIxZTYyYmZhYTZiMGY5YmQiLCJpYXQiOjE2NzQyODg0MTZ9.EoMSInZunNB43tS0Zc9Hn-yXEoUyuZmtZEmHY0dSCJ4'
+            auth:token
         }
     }).then((res)=>{
         dispatch({type:CartType,payload:res.data})
