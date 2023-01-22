@@ -4,6 +4,7 @@
   margin: 50px auto;
   padding: 20px 30px;
   background-color: #f5f5f5;
+  text-align: left;
 }
 .opt_img {
   /* border: 1px solid green; */
@@ -86,6 +87,7 @@
   width: 80%;
   margin: auto;
   padding: 30px 20px;
+  text-align: left;
 }
 .extra_info > b {
   font-size: 12px;
