@@ -59,7 +59,8 @@ let CartBody = () => {
         width: "75vw",
         margin: "auto",
         marginBottom:'100px',
-        gap:'50px'
+        gap:'50px',
+        marginTop:'60px'
       }}
     >
       <Box sx={{ textAlign: "left" }}>
@@ -72,8 +73,8 @@ let CartBody = () => {
             gap: "5px",
           }}
         >
-          <Box component="h4">My Bag</Box>
-          <Box>1 item</Box>
+          <Box>My Bag : </Box>
+          <Box component="h4">1 item</Box>
         </Box>
         <Box sx={{backgroundColor:'#FCFFEE',padding:'15px'}}>Yay! You get FREE delivery on this order</Box>
         <Box>

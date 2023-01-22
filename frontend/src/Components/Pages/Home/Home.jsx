@@ -13,20 +13,24 @@ import Top from './Top';
 import Gangs from './Gangs';
 import Bags from './Bags';
 
+import Navbar from '../Navbar/Navbar';
+
 
 
 const Home = () => {
-  let token = JSON.parse(localStorage.getItem('token'))
-  if(token){
-
-  }
     const [data, setData] = useState([]);
-  useEffect(() => {
-    const getData = async () => {
-      let res = await axios.get("http://localhost:8080/homepage");
-      setData(res.data.slice(12,19));
-      console.log(res);
+
+    
+    const getData =  () => {
+      axios.get('http://localhost:8000/homepage').then((res)=>{
+        setData(res.data)
+      }).catch((err)=>{
+        console.log(err)
+      })
     };
+
+
+  useEffect(() => {
     getData();
   }, []);
   
@@ -34,7 +38,7 @@ const Home = () => {
   return (
     <>
     <Box bg={"white"}>
-   
+   <Navbar/>
 
 <Box paddingTop={"90px"}>
 <Flex mb={"20px"}  gap={"10px"}>

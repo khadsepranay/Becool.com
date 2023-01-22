@@ -10,7 +10,6 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {/* <ChakraProvider><Navbar/></ChakraProvider> */}
       <AllRoutes/>
       <Footer/>
     </div>

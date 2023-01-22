@@ -3,6 +3,7 @@ const express = require("express");
 const { CartModel } = require("../Model/cart_Model");
 const { ProductModel } = require("../Model/product_Model");
 const jwt = require("jsonwebtoken");
+let Key = process.env.Key
 
 const { userAuthMiddleware } = require("../Middleware/userAuthMiddleware");
 
@@ -47,7 +48,7 @@ cart.get("/add/:id", userAuthMiddleware, async (req, res) => {
 
 cart.get('/cartquantityadd/:id',userAuthMiddleware ,async(req,res)=>{
   const token = req.headers.auth;
-    const { userid } = await jwt.verify(token, "AccessToken");
+    const { userid } = await jwt.verify(token, Key);
     req.body.userid = userid;
   let productid = req.params.id
   let CartData = await CartModel.find().populate([

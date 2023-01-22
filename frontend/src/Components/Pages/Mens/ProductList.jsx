@@ -26,7 +26,7 @@ useTimeout(()=>setIsLoaded(true),1500)
 
 
   return (
-    <Box   textAlign={"left"} margin={"auto"} w={"85%"}>
+    <Box   textAlign={"left"} margin={"auto"} w={"85%"} paddingTop={'30px'}>
         <Box mt="30rem" my="4">
           <Heading >
             Men Clothing
@@ -53,9 +53,7 @@ useTimeout(()=>setIsLoaded(true),1500)
               }}
             
             height="90vh"   >
-              {
-                !isLoaded ? <Skeleton h="300px" w="100%"></Skeleton>:<CategorySelector />
-              }
+              <CategorySelector />
             
             </Box>
           </Box>
@@ -64,9 +62,8 @@ useTimeout(()=>setIsLoaded(true),1500)
           <Box textAlign={"right"}>
             <Text>Sort By</Text>
           </Box>
-          {
-            isLoaded?<Skeleton mx="2rem" w="800px" h="800px"></Skeleton>
-:        <SimpleGrid mb="10rem" mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
+        
+        <SimpleGrid mb="10rem" mx="5" w={"100%"} spacing={7} columns={[1, 2, 3, 3]} >
 
       
              {
@@ -75,7 +72,7 @@ useTimeout(()=>setIsLoaded(true),1500)
             
         
 
-          </SimpleGrid>   }
+          </SimpleGrid>   
          
         </Box>
       </Box>

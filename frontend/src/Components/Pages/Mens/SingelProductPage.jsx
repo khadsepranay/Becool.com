@@ -87,7 +87,7 @@ const handleMainImg=(e)=>{
 }
 
     return (
-        <Box textAlign={"left"}>
+        <Box textAlign={"left"} paddingTop='20px'>
             <Box mx={"10"} my="5" p="5">
                 <Text color={"gray.600"}>
                     Home {location.pathname} / {`${pData.Name}`}
@@ -104,7 +104,7 @@ const handleMainImg=(e)=>{
                 w={"100%"}>
 
                     <VStack p={""} w={"30%"}  >
-                        {isLoaded?<Skeleton></Skeleton>:
+                        
                         <Box p="4" w={"80%"}>
                             <VStack>
                                 <Img onClick={(e)=>handleMainImg(e)} src={pData.Image_Main}/>
@@ -115,20 +115,17 @@ const handleMainImg=(e)=>{
                             </VStack>
 
                         </Box>
-                        }
+                        
                         
 
 
                     </VStack>
-                    {
-                        isLoaded?<Skeleton></Skeleton>:
 
                             <Box h={"100%"}  w={"100%"}>
                         {/* <Img src="https://images.bewakoof.com/t1080/men-s-black-deathnote-ryuk-oversized-t-shirt-568923-1673597452-1.jpg" /> */}
                         <Img src={`${mainImg}`}/>
                     </Box>
 
-                    }
                 
 
 
@@ -219,7 +216,7 @@ const handleMainImg=(e)=>{
                                     </HStack>
                                     <Box   my="5" >
                                         <HStack gap={'2'} >
-                                            <Button disabled={isAdded==true} background={'yellow.300'} px='80px' onClick={()=>dispatch(addToCart(pData._id))}>{isAdded?'Already added to cart':"ADD TO BAG"}</Button>
+                                            <Button disabled={isAdded==true} background={'yellow.300'} px='80px' onClick={()=>dispatch(addToCart(pData._id))}>{isAdded?'Added to cart':"ADD TO BAG"}</Button>
                                             <Link to='/carts'><Button border={'0.5px solid gray'} color='gray.400' background={'white'} px='50px'>Go to Cart</Button></Link>
                                         </HStack>
                                     </Box>

@@ -83,7 +83,7 @@ export const Register = () => {
             }}
             onClick={handelregister}
           >
-            Login
+            Signup
           </button>
         </div>
         <div
@@ -96,7 +96,6 @@ export const Register = () => {
           }}
         ></div>
         <p>
-          {" "}
           Go to user <Link style={{color:"red"}} to={"/login"}>Login page</Link>
         </p>
       </div>

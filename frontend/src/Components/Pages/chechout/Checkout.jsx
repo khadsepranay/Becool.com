@@ -39,7 +39,7 @@ export const Checkout = () => {
 
   return (
    
-      <div className="PM">
+      <div className="PM" style={{paddingTop:'100px'}}>
         <div className="text">Choose your payment method</div>
         <div
           style={{
@@ -174,7 +174,7 @@ export const Checkout = () => {
                 }}
                 onClick={()=>handleOrder()}
               >
-                {ActualPrice}
+                ₹ {ActualPrice}
               </button>
             </div>
           </div>
