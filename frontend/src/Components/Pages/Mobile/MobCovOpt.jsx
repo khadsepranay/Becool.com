@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./MobCovOpt.css";
 
 const MobCovOpt = () => {
@@ -7,13 +7,17 @@ const MobCovOpt = () => {
   const clickRef = useRef();
 
   const toCoverPage = (e) => {
-    console.log(e.target.innerText);
+    const company=e.target.innerText
+    console.log(company);
+    localStorage.setItem("cover_company",JSON.stringify(company))
     navigate("/mobiles/covers");
   };
+
   const toCoverPage1 = (e) => {
     const option = clickRef.current.value;
     console.log(option);
     if (option) {
+      localStorage.setItem("cover_company",JSON.stringify(option))
       navigate("/mobiles/covers");
     }
     else{
