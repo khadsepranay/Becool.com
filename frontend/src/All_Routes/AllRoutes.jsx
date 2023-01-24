@@ -8,6 +8,8 @@ import SingleProductPage from "../Components/Pages/Mens/SingelProductPage";
 import { Login } from "../Components/login/Login";
 import { Register } from "../Components/register/Register";
 import { Checkout } from "../Components/Pages/chechout/Checkout";
+import MobCovOpt from "../Components/Pages/Mobile/MobCovOpt";
+import Covers from "../Components/Pages/Mobile/Covers";
 function AllRoutes() {
   return (
     <Routes>
@@ -58,8 +60,8 @@ function AllRoutes() {
 
       {/* vikas */}
 
-      <Route path="/mobiles"></Route>
-      <Route path="/mobiles/covers"></Route>
+      <Route path="product/mobiles" element={<MobCovOpt/>}></Route>
+      <Route path="/mobiles/covers" element={<Covers/>}></Route>
 
       {/* pranay */}
       <Route path="/carts" element={<Cart />}></Route>
