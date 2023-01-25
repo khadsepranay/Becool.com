@@ -13,3 +13,18 @@ Team Members :
 - Vikas Dongarwar - fw19_0686
 
 - Anju Tewatia - fp06_350
+
+<h2>Tech-Stack : -</h2>
+ - React
+ - Redux
+ - Chakra-UI
+ - Material-UI
+ - NodeJs
+ - MongoDB
+ - Mongoose
+ 
+ 
+ 
+ 
+
+
