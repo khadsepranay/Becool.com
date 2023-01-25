@@ -16,7 +16,7 @@ Team Members :
 
 - Anju Tewatia - fp06_350
 
-<h2>Tech-Stack : -</h2>
+##<h2>Tech-Stack : -</h2>
  - React
  - Redux
  - Chakra-UI
@@ -33,7 +33,7 @@ Team Members :
 <h2>Homepage :- </h2>
 
 
-<img  src="./screen_shots/Homepage.PNG"/>
+<img  src="./screen_shots/homepage.PNG"/>
 
 
 <h2>Mens Page  : -</h2>
